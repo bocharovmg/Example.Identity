@@ -5,16 +5,16 @@ using Exemple.Identity.Infrastructure.Contracts.Notifications;
 
 namespace Exemple.Identity.Infrastructure.NotificationHandlers;
 
-public class SendVerificationCodeNotificationHandler : ISendVerificationCodeNotificationHandler
+public class VerificationCodeCreatedNotificationHandler : IVerificationCodeCreatedNotificationHandler
 {
     private readonly IEmailService _emailService;
 
-    public SendVerificationCodeNotificationHandler(IEmailService emailService)
+    public VerificationCodeCreatedNotificationHandler(IEmailService emailService)
     {
         _emailService = emailService;
     }
 
-    public async Task Handle(SendVerificationCodeNotification request, CancellationToken cancellationToken)
+    public async Task Handle(VerificationCodeCreatedNotification request, CancellationToken cancellationToken)
     {
         var subject = request.VerificationField switch
         {

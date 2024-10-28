@@ -64,6 +64,10 @@ public class EmailService : IEmailService
 
                 _logger.LogError(new EmailException("", ex), exceptionMessage);
             }
+            finally
+            {
+                message.Dispose();
+            }
         });
     }
 
@@ -83,7 +87,7 @@ public class EmailService : IEmailService
         CancellationToken cancellationToken = default
     )
     {
-        using var mailMessage = new MailMessage
+        var mailMessage = new MailMessage
         {
             From = new MailAddress(from ?? _settings.Login),
             Subject = subject,

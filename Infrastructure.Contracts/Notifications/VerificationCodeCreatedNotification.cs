@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Exemple.Identity.Infrastructure.Contracts.Notifications;
 
-public class SendVerificationCodeNotification(
+public class VerificationCodeCreatedNotification(
     string email,
     string verificationcode,
     VerificationFieldType verificationField

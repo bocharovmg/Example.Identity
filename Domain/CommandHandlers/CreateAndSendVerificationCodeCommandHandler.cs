@@ -88,7 +88,7 @@ public class CreateAndSendVerificationCodeCommandHandler : ICreateAndSendVerific
 
             #region send verification code
             var sendVerificationCodeRequest = new InfrastructureNotifications
-                .SendVerificationCodeNotification(user.Email, verificationCode, verificationField);
+                .VerificationCodeCreatedNotification(user.Email, verificationCode, verificationField);
 
             await _mediator.Publish(sendVerificationCodeRequest, cancellationToken);
             #endregion

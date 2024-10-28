@@ -26,7 +26,7 @@ public static class InfrastructureConfigurator
 
     private static void RegisterCammandHandlers(MediatRServiceConfiguration configuration)
     {
-        configuration.RegisterServicesFromAssembly(typeof(SendVerificationCodeNotificationHandler).Assembly);
+        configuration.RegisterServicesFromAssembly(typeof(VerificationCodeCreatedNotificationHandler).Assembly);
 
         configuration.RegisterServicesFromAssembly(typeof(BlockUserAccessCommandHandler).Assembly);
 
@@ -62,9 +62,9 @@ public static class InfrastructureConfigurator
     {
         services.AddSingleton<IVerificationStateCache, VerificationStateCache>();
 
-        services.AddScoped<ISqlConnectionManager, SqlConnectionManager>();
+        services.AddSingleton<IEmailService, EmailService>();
 
-        services.AddTransient<IEmailService, EmailService>();
+        services.AddScoped<ISqlConnectionManager, SqlConnectionManager>();
 
         return services;
     }
