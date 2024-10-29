@@ -34,6 +34,13 @@ GRANT SELECT ON SCHEMA :: [user] TO identitySystemUser WITH GRANT OPTION;
 GRANT UPDATE ON SCHEMA :: [user] TO identitySystemUser WITH GRANT OPTION;
 
 
+GRANT DELETE ON SCHEMA :: [outbox] TO identitySystemUser WITH GRANT OPTION;
+GRANT EXECUTE ON SCHEMA :: [outbox] TO identitySystemUser WITH GRANT OPTION;
+GRANT INSERT ON SCHEMA :: [outbox] TO identitySystemUser WITH GRANT OPTION;
+GRANT SELECT ON SCHEMA :: [outbox] TO identitySystemUser WITH GRANT OPTION;
+GRANT UPDATE ON SCHEMA :: [outbox] TO identitySystemUser WITH GRANT OPTION;
+
+
 :SETVAR ScriptName ".\DataMigrations\0001. Create block types"
 GO
 
@@ -89,6 +96,33 @@ GO
 
 
 :SETVAR ScriptName ".\DataMigrations\0003. Create user settings"
+GO
+
+IF NOT EXISTS (   SELECT *
+                    FROM dbo.MigrationsHistory
+                   WHERE ScriptName = '$(ScriptName)' AND DatabaseName = DB_NAME())
+    BEGIN
+        BEGIN TRY
+            BEGIN TRANSACTION
+
+            :r $(ScriptName)".SQL"
+            INSERT INTO dbo.MigrationsHistory
+            VALUES ('$(ScriptName)', DB_NAME(), SYSDATETIME());
+
+            COMMIT
+        END TRY
+        BEGIN CATCH
+            ROLLBACK
+
+            DECLARE @err VARCHAR(MAX) = ERROR_MESSAGE();
+
+            RAISERROR('One time script $(ScriptName).sql failed %s', 16, 1, @err);
+        END CATCH;
+    END;
+GO
+
+
+:SETVAR ScriptName ".\DataMigrations\0004. Create outbox message types"
 GO
 
 IF NOT EXISTS (   SELECT *

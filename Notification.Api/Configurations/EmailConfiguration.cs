@@ -1,7 +1,8 @@
-﻿using Exemple.Identity.Infrastructure.Services.Email;
+﻿using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
+using Exemple.Identity.Infrastructure.Services.Email;
 
 
-namespace Exemple.Identity.Api.Configurations;
+namespace Notification.Api.Configurations;
 
 public static class EmailConfiguration
 {
@@ -10,6 +11,8 @@ public static class EmailConfiguration
         configurationManager.AddJsonFile("email-config.json");
 
         services.Configure<EmailSettings>(configurationManager);
+
+        services.AddTransient<IEmailService, EmailService>();
 
         return services;
     }

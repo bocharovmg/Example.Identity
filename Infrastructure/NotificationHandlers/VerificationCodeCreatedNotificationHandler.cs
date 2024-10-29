@@ -1,21 +1,25 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Interfaces.NotificationHandlers;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
+﻿using MediatR;
+using Exemple.Identity.Infrastructure.Contracts.Interfaces.NotificationHandlers;
 using Exemple.Identity.Infrastructure.Contracts.Notifications;
+using Infrastructure.Contracts.Commands;
+using System.Text.Json;
+using Infrastructure.Contracts.Enums.Outbox;
 
 
 namespace Exemple.Identity.Infrastructure.NotificationHandlers;
 
 public class VerificationCodeCreatedNotificationHandler : IVerificationCodeCreatedNotificationHandler
 {
-    private readonly IEmailService _emailService;
+    private readonly IMediator _mediator;
 
-    public VerificationCodeCreatedNotificationHandler(IEmailService emailService)
+    public VerificationCodeCreatedNotificationHandler(IMediator mediator)
     {
-        _emailService = emailService;
+        _mediator = mediator;
     }
 
     public async Task Handle(VerificationCodeCreatedNotification request, CancellationToken cancellationToken)
     {
+        #region prepare message data
         var subject = request.VerificationField switch
         {
             Contracts.Enums.User.VerificationFieldType.Email => "Подтверждение email",
@@ -25,7 +29,21 @@ public class VerificationCodeCreatedNotificationHandler : IVerificationCodeCreat
         };
 
         var message = $"Код подтверждения: {request.VerificationCode}";
+        #endregion
 
-        await _emailService.SendMessageAsync(request.Email, subject, message, cancellationToken: cancellationToken);
+        #region prepare payload
+        var payloadObject = new
+        {
+            To = new string[] { request.Email },
+            Subject = subject,
+            Message = message
+        };
+
+        var payload = JsonSerializer.Serialize(payloadObject);
+        #endregion
+
+        var addOutboxMessageRequest = new AddOutboxMessageCommand(payload, MessageType.Email);
+
+        await _mediator.Send(addOutboxMessageRequest, cancellationToken);
     }
 }

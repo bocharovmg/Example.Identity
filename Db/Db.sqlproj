@@ -67,6 +67,9 @@
     <Folder Include="user\UserTypes" />
     <Folder Include="user\Views" />
     <Folder Include="Scripts\DataMigrations" />
+    <Folder Include="outbox" />
+    <Folder Include="outbox\Tables" />
+    <Folder Include="outbox\StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\MigrationHistory.sql" />
@@ -95,6 +98,12 @@
     <Build Include="user\Views\RandView.sql" />
     <Build Include="user\Functions\GenerateCode.sql" />
     <Build Include="user\user.sql" />
+    <Build Include="outbox\outbox.sql" />
+    <Build Include="outbox\Tables\Messages.sql" />
+    <Build Include="outbox\StoredProcedures\AddMessage.sql" />
+    <Build Include="outbox\StoredProcedures\NextMessage.sql" />
+    <Build Include="outbox\StoredProcedures\RemoveMessage.sql" />
+    <Build Include="outbox\Tables\MessageTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
@@ -102,4 +111,10 @@
   <ItemGroup>
     <PreDeploy Include="Scripts\Script.PreDeployment.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\DataMigrations\0004. Create outbox message types.sql" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PreBuildEvent>rd /s /q "$(TargetDir)"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

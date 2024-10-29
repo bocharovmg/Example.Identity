@@ -34,41 +34,30 @@ public class EmailService : IEmailService
         CancellationToken cancellationToken = default
     )
     {
-        await Task.Yield();
-
-#pragma warning disable CS4014
-        Task.Run(() =>
-#pragma warning restore CS4014
+        using var smtpClient = new SmtpClient
         {
-            using var smtpClient = new SmtpClient
-            {
-                Host = _settings.Host,
-                Port = _settings.Port,
-                UseDefaultCredentials = _settings.UseDefaultCredentials ?? false,
-                EnableSsl = _settings.EnableSsl ?? true,
-                Timeout = _settings.Timeout ?? 100000,
-            };
+            Host = _settings.Host,
+            Port = _settings.Port,
+            UseDefaultCredentials = _settings.UseDefaultCredentials ?? false,
+            EnableSsl = _settings.EnableSsl ?? true,
+            Timeout = _settings.Timeout ?? 100000,
+        };
 
-            try
-            {
-                smtpClient.Credentials = new NetworkCredential(
-                    _settings.Login,
-                    _settings.Password
-                );
+        try
+        {
+            smtpClient.Credentials = new NetworkCredential(
+                _settings.Login,
+                _settings.Password
+            );
 
-                smtpClient.Send(message);
-            }
-            catch (Exception ex)
-            {
-                var exceptionMessage = "Failed to send email message";
+            await smtpClient.SendMailAsync(message, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            var exceptionMessage = "Failed to send email message";
 
-                _logger.LogError(new EmailException("", ex), exceptionMessage);
-            }
-            finally
-            {
-                message.Dispose();
-            }
-        });
+            _logger.LogError(new EmailException("", ex), exceptionMessage);
+        }
     }
 
     /// <summary>
@@ -87,7 +76,7 @@ public class EmailService : IEmailService
         CancellationToken cancellationToken = default
     )
     {
-        var mailMessage = new MailMessage
+        using var mailMessage = new MailMessage
         {
             From = new MailAddress(from ?? _settings.Login),
             Subject = subject,

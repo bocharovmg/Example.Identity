@@ -5,10 +5,15 @@
 /Api/obj
 /Api/bin
 /Api/database-config.json
-/Api/email-config.json
 /Api/jwt-config.json
 /Api/Properties/launchSettings.json
 /Api/Properties/PublishProfiles/*.pubxml
+/Notification.Api/obj
+/Notification.Api/bin
+/Notification.Api/database-config.json
+/Notification.Api/email-config.json
+/Notification.Api/Properties/launchSettings.json
+/Notification.Api/Properties/PublishProfiles/*.pubxml
 /Domain/obj
 /Domain/bin
 /Domain.Contracts/obj

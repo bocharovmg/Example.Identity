@@ -3,12 +3,11 @@ using Exemple.Identity.Abstractions.Core.CommandHandlers;
 using Exemple.Identity.Domain.CommandHandlers;
 using Exemple.Identity.Domain.Configurations.Profiles;
 using Exemple.Identity.Domain.QueryHandlers;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace Exemple.Identity.Domain.Configurations;
 
-public static class DomainHandlersConfigurator
+public static class DomainHandlersConfiguration
 {
     #region configure handlers
     public static MediatRServiceConfiguration ConfigureDomainHandlers(this MediatRServiceConfiguration configuration)

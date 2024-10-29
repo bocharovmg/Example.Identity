@@ -7,7 +7,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigureExceptionHandlers();
 builder.Services.ConfigureJwt(builder.Configuration);
 builder.Services.ConfigureDatabaseOptions(builder.Configuration);
-builder.Services.ConfigureEmailOptions(builder.Configuration);
 builder.Services.RegisterServices();
 
 #pragma warning disable ASP0000

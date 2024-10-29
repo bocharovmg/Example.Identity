@@ -3,19 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{C048BB38-F723-4437-A2A9-9871E3437057}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{C048BB38-F723-4437-A2A9-9871E3437057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions", "Abstractions\Abstractions.csproj", "{53543390-4086-48C1-959A-80251275741E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions", "Abstractions\Abstractions.csproj", "{53543390-4086-48C1-959A-80251275741E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Contracts", "Domain.Contracts\Domain.Contracts.csproj", "{200BC80A-028E-4462-BA82-26E45946633F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Contracts", "Domain.Contracts\Domain.Contracts.csproj", "{200BC80A-028E-4462-BA82-26E45946633F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{9F739A0F-D2A8-41A6-876A-2AE0B8D14C01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{9F739A0F-D2A8-41A6-876A-2AE0B8D14C01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Contracts", "Infrastructure.Contracts\Infrastructure.Contracts.csproj", "{8304D055-2410-42A9-A808-DC119528F43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Contracts", "Infrastructure.Contracts\Infrastructure.Contracts.csproj", "{8304D055-2410-42A9-A808-DC119528F43E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C3F6330B-B109-4F7C-9384-F1F9D3CB2995}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C3F6330B-B109-4F7C-9384-F1F9D3CB2995}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Db", "Db\Db.sqlproj", "{3920AD17-8DC0-4EE0-A098-574A2296BFA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Api", "Notification.Api\Notification.Api.csproj", "{0B235D59-4628-4517-9FED-1BD67A7DB11D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{3920AD17-8DC0-4EE0-A098-574A2296BFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3920AD17-8DC0-4EE0-A098-574A2296BFA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3920AD17-8DC0-4EE0-A098-574A2296BFA8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0B235D59-4628-4517-9FED-1BD67A7DB11D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B235D59-4628-4517-9FED-1BD67A7DB11D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B235D59-4628-4517-9FED-1BD67A7DB11D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B235D59-4628-4517-9FED-1BD67A7DB11D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,6 +13,10 @@ public static class ServicesConfiguration
 
         services.AddMemoryCache();
 
+        services.ConfigureDomainServices();
+
+        services.ConfigureInfrastructureServices();
+
         services
             .AddMediatR(
                 configuration =>
@@ -22,10 +26,6 @@ public static class ServicesConfiguration
                     configuration.ConfigureInfrastructureHandlers();
                 }
             );
-
-        services.ConfigureDomainServices();
-
-        services.ConfigureInfrastructureServices();
 
         services
             .AddAutoMapper(

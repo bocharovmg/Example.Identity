@@ -6,13 +6,12 @@ using Exemple.Identity.Infrastructure.ConnectionManager;
 using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
 using Exemple.Identity.Infrastructure.NotificationHandlers;
 using Exemple.Identity.Infrastructure.Services;
-using Exemple.Identity.Infrastructure.Services.Email;
-using Microsoft.Extensions.DependencyInjection;
+using Infrastructure.CommandHandlers;
 
 
 namespace Exemple.Identity.Infrastructure.Configuration;
 
-public static class InfrastructureConfigurator
+public static class InfrastructureConfiguration
 {
     #region configure handlers
     public static MediatRServiceConfiguration ConfigureInfrastructureHandlers(this MediatRServiceConfiguration configuration)
@@ -41,6 +40,8 @@ public static class InfrastructureConfigurator
         configuration.RegisterServicesFromAssembly(typeof(SetupPasswordCommandHandler).Assembly);
 
         configuration.RegisterServicesFromAssembly(typeof(SetupUserLanguageCommandHandler).Assembly);
+
+        configuration.RegisterServicesFromAssembly(typeof(AddOutboxMessageCommandHandler).Assembly);
     }
 
     private static void RegisterQueryHandlers(MediatRServiceConfiguration configuration)
@@ -61,8 +62,6 @@ public static class InfrastructureConfigurator
     )
     {
         services.AddSingleton<IVerificationStateCache, VerificationStateCache>();
-
-        services.AddSingleton<IEmailService, EmailService>();
 
         services.AddScoped<ISqlConnectionManager, SqlConnectionManager>();
 
