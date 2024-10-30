@@ -7,7 +7,7 @@ using Exemple.Identity.Domain.QueryHandlers;
 
 namespace Exemple.Identity.Domain.Configurations;
 
-public static class DomainHandlersConfiguration
+public static class DomainConfiguration
 {
     #region configure handlers
     public static MediatRServiceConfiguration ConfigureDomainHandlers(this MediatRServiceConfiguration configuration)
