@@ -1,13 +1,13 @@
-﻿
-using Infrastructure.Processors;
+﻿using Infrastructure.Contracts.Interfaces.Processors;
+
 
 namespace Notification.Api.BackgroundServices
 {
-    public class EmailOutboxBackgroundService : BackgroundService
+    public class OutboxBackgroundService<TOutboxProcessor> : BackgroundService where TOutboxProcessor : IOutboxProcessor
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public EmailOutboxBackgroundService(
+        public OutboxBackgroundService(
             IServiceProvider serviceProvider
         )
         {
@@ -26,7 +26,7 @@ namespace Notification.Api.BackgroundServices
                 {
                     using var scope = _serviceProvider.CreateAsyncScope();
 
-                    var processor = scope.ServiceProvider.GetRequiredService<IEmailOutboxProcessor>();
+                    var processor = scope.ServiceProvider.GetRequiredService<TOutboxProcessor>();
 
                     await processor.ProcessAsync(stoppingToken);
 

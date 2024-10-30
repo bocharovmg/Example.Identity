@@ -19,7 +19,7 @@ public static class ServicesConfiguration
                 }
             );
 
-        services.AddHostedService<EmailOutboxBackgroundService>();
+        services.AddHostedService<OutboxBackgroundService<IEmailOutboxProcessor>>();
 
         services.AddTransient<IEmailOutboxProcessor, EmailOutboxProcessor>();
 
