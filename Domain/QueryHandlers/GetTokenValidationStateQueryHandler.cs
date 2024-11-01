@@ -19,12 +19,10 @@ public class GetTokenValidationStateQueryHandler : IGetTokenValidationStateQuery
         _jwtOptions = options.Value ?? throw new ArgumentNullException($"{nameof(options)} of type {typeof(IOptions<JwtOptions>)}");
     }
 
-    public async Task<TokenValidationState> Handle(GetTokenValidationStateQuery request, CancellationToken cancellationToken)
+    public Task<TokenValidationState> Handle(GetTokenValidationStateQuery request, CancellationToken cancellationToken)
     {
-        await Task.Yield();
-
         var securityToken = new SecurityTokenModel(_jwtOptions, request.SecurityToken);
 
-        return securityToken.ValidationState;
+        return Task.FromResult(securityToken.ValidationState);
     }
 }

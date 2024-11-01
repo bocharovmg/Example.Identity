@@ -19,15 +19,13 @@ public class GetSecurityTokenQueryHandler : IGetSecurityTokenQueryHandler
         _jwtOptions = options.Value ?? throw new ArgumentNullException($"{nameof(options)} of type {typeof(IOptions<JwtOptions>)}");
     }
 
-    public async Task<SecurityTokenDto> Handle(GetSecurityTokenQuery request, CancellationToken cancellationToken)
+    public Task<SecurityTokenDto> Handle(GetSecurityTokenQuery request, CancellationToken cancellationToken)
     {
-        await Task.Yield();
-
         var securityToken = new SecurityTokenModel(_jwtOptions, Microsoft.IdentityModel.Tokens.SecurityAlgorithms.HmacSha256, request.Claims);
 
-        return new SecurityTokenDto
+        return Task.FromResult(new SecurityTokenDto
         {
             SecurityToken = securityToken.ToString()
-        };
+        });
     }
 }

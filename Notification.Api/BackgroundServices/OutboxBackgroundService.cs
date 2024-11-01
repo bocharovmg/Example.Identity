@@ -14,13 +14,9 @@ namespace Notification.Api.BackgroundServices
             _serviceProvider = serviceProvider;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await Task.Yield();
-
-#pragma warning disable CS4014
             Task.Run(async () =>
-#pragma warning restore CS4014
             {
                 while (!stoppingToken.IsCancellationRequested)
                 {
@@ -33,6 +29,8 @@ namespace Notification.Api.BackgroundServices
                     await Task.Delay(1000);
                 }
             });
+
+            return Task.CompletedTask;
         }
     }
 }
