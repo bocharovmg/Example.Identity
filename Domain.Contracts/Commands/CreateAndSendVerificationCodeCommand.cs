@@ -1,11 +1,12 @@
-﻿using Exemple.Identity.Domain.Contracts.Dtos;
-using Exemple.Identity.Domain.Contracts.Enums.User;
+﻿using Domain.Contracts.Dtos;
+using Domain.Contracts.Enums.User;
+using Domain.Contracts.Interfaces.SeedWork;
 using MediatR;
 
 
-namespace Exemple.Identity.Domain.Contracts.Commands;
+namespace Domain.Contracts.Commands;
 
-public class CreateAndSendVerificationCodeCommand(string email, VerificationFieldType verificationField) : IRequest<VerificationStateDto>
+public class CreateAndSendVerificationCodeCommand(string email, VerificationFieldType verificationField) : IRequest<VerificationStateDto>, ITransactional
 {
     public string Email { get; private init; } = email;
 

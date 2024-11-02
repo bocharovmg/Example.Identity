@@ -1,13 +1,13 @@
-﻿using Exemple.Identity.Abstractions.Core.Extensions;
-using Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
-using Exemple.Identity.Infrastructure.Contracts.Dtos;
-using Exemple.Identity.Infrastructure.Contracts.Exceptions;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.QueryHandlers;
-using Exemple.Identity.Infrastructure.Contracts.Queries;
+﻿using Abstractions.Core.Extensions;
+using Abstractions.Infrastructure.ConnectionManager;
+using Infrastructure.Contracts.Dtos;
+using Infrastructure.Contracts.Exceptions;
+using Infrastructure.Contracts.Interfaces.QueryHandlers;
+using Infrastructure.Contracts.Queries;
 using Dapper;
 
 
-namespace Exemple.Identity.Infrastructure.CommandHandlers;
+namespace Infrastructure.CommandHandlers;
 
 public class GetUserQueryHandler : IGetUserQueryHandler
 {

@@ -1,9 +1,9 @@
-﻿using Exemple.Identity.Domain.Contracts.Dtos;
+﻿using Domain.Contracts.Dtos;
 using MediatR;
 using System.Security.Claims;
 
 
-namespace Exemple.Identity.Domain.Contracts.Queries;
+namespace Domain.Contracts.Queries;
 
 public class GetSecurityTokenQuery : IRequest<SecurityTokenDto>
 {

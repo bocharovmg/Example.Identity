@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
+using Infrastructure.Contracts.Interfaces.Services;
 using Infrastructure.Contracts.Queries;
 using Infrastructure.Contracts.Enums.Outbox;
 using Microsoft.Extensions.Logging;

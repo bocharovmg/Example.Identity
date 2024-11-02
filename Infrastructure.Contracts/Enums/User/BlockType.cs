@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Infrastructure.Contracts.Enums.User;
+﻿namespace Infrastructure.Contracts.Enums.User;
 
 /// <summary>
 /// User block type

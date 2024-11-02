@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Enums.User;
+﻿using Infrastructure.Contracts.Enums.User;
 using MediatR;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Commands;
+namespace Infrastructure.Contracts.Commands;
 
 public class GenerateVerificationCodeCommand(
     Guid userId,

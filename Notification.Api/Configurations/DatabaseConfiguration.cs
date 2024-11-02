@@ -1,5 +1,5 @@
-﻿using Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
-using Exemple.Identity.Infrastructure.ConnectionManager;
+﻿using Abstractions.Infrastructure.ConnectionManager;
+using Infrastructure.ConnectionManager;
 
 
 namespace Notification.Api.Configurations;

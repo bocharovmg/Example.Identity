@@ -1,12 +1,12 @@
-﻿using Exemple.Identity.Domain.Contracts.Dtos;
-using Exemple.Identity.Domain.Contracts.Interfaces.QueryHandlers;
-using Exemple.Identity.Domain.Contracts.Queries;
-using Exemple.Identity.Domain.Models;
-using Exemple.Identity.Domain.Security;
+﻿using Domain.Contracts.Dtos;
+using Domain.Contracts.Interfaces.QueryHandlers;
+using Domain.Contracts.Queries;
+using Domain.Models;
+using Domain.Security;
 using Microsoft.Extensions.Options;
 
 
-namespace Exemple.Identity.Domain.QueryHandlers;
+namespace Domain.QueryHandlers;
 
 public class GetSecurityTokenQueryHandler : IGetSecurityTokenQueryHandler
 {

@@ -1,12 +1,12 @@
-﻿using Exemple.Identity.Domain.Security;
-using Exemple.Identity.Infrastructure.Contracts;
+﻿using Domain.Security;
+using Infrastructure.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 
-namespace Exemple.Identity.Api.Configurations;
+namespace Api.Configurations;
 
 public static class SecurityConfiguration
 {

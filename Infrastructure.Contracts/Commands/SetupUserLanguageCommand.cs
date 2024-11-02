@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Enums.Language;
+﻿using Infrastructure.Contracts.Enums.Language;
 using MediatR;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Commands;
+namespace Infrastructure.Contracts.Commands;
 
 public class SetupUserLanguageCommand(
     Guid userId,

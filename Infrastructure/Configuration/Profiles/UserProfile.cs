@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 
-namespace Exemple.Identity.Infrastructure.Configuration.Profiles;
+namespace Infrastructure.Configuration.Profiles;
 
 public class UserProfile : Profile
 {

@@ -1,7 +1,7 @@
-﻿using Exemple.Identity.Infrastructure.ConnectionManager;
+﻿using Infrastructure.ConnectionManager;
 
 
-namespace Exemple.Identity.Api.Configurations;
+namespace Api.Configurations;
 
 public static class DatabaseConfiguration
 {

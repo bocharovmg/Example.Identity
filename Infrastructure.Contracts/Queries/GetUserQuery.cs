@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Dtos;
+﻿using Infrastructure.Contracts.Dtos;
 using MediatR;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Queries;
+namespace Infrastructure.Contracts.Queries;
 
 public class GetUserQuery(
     Guid userId

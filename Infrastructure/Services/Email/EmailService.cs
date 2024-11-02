@@ -1,12 +1,12 @@
 ﻿using System.Net;
 using System.Net.Mail;
-using Exemple.Identity.Infrastructure.Contracts.Exceptions;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
+using Infrastructure.Contracts.Exceptions;
+using Infrastructure.Contracts.Interfaces.Services;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 
-namespace Exemple.Identity.Infrastructure.Services.Email;
+namespace Infrastructure.Services.Email;
 
 public class EmailService : IEmailService
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace Exemple.Identity.Api.Contracts.Requests.VerificationCode;
+namespace Api.Contracts.Requests.VerificationCode;
 
 public class RestorePasswordVerificationCodeRequest
 {

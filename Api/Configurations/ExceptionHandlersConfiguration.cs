@@ -1,7 +1,7 @@
-﻿using Exemple.Identity.Api.ExceptionHandlers;
+﻿using Api.ExceptionHandlers;
 
 
-namespace Exemple.Identity.Api.Configurations;
+namespace Api.Configurations;
 
 public static class ExceptionHandlersConfiguration
 {

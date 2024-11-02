@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Commands;
+namespace Infrastructure.Contracts.Commands;
 
 public class OpenUserAccessCommand(
     Guid userId

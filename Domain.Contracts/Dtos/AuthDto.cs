@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Domain.Contracts.Dtos
+﻿namespace Domain.Contracts.Dtos
 {
     public class AuthDto
     {

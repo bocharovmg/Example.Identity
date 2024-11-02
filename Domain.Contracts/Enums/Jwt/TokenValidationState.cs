@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Domain.Contracts.Enums.Jwt
+﻿namespace Domain.Contracts.Enums.Jwt
 {
     public enum TokenValidationState
     {

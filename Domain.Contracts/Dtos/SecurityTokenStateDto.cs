@@ -1,7 +1,7 @@
-﻿using Exemple.Identity.Domain.Contracts.Enums.Jwt;
+﻿using Domain.Contracts.Enums.Jwt;
 
 
-namespace Exemple.Identity.Domain.Contracts.Dtos;
+namespace Domain.Contracts.Dtos;
 
 public class SecurityTokenStateDto
 {

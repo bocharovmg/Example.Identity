@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
+﻿using Abstractions.Infrastructure.ConnectionManager;
 using Microsoft.Data.SqlClient;
 
 
-namespace Exemple.Identity.Abstractions.Core.Extensions;
+namespace Abstractions.Core.Extensions;
 
 /// <summary>
 /// Run method with database connection.

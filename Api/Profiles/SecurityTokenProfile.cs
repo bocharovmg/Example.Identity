@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Exemple.Identity.Api.Contracts.Requests.SecurityToken;
-using Exemple.Identity.Domain.Contracts.Queries;
+using Api.Contracts.Requests.SecurityToken;
+using Domain.Contracts.Queries;
 
 
-namespace Exemple.Identity.Api.Profiles
+namespace Api.Profiles
 {
     public class SecurityTokenProfile : Profile
     {

@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Domain.Contracts.Enums
+﻿namespace Domain.Contracts.Enums
 {
     /// <summary>
     /// AllErrors

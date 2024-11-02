@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
+﻿namespace Abstractions.Infrastructure.ConnectionManager;
 
 public interface IConnectionManager<TConnection, TTransaction>
 {

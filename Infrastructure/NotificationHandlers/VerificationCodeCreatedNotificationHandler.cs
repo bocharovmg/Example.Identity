@@ -1,12 +1,12 @@
 ﻿using MediatR;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.NotificationHandlers;
-using Exemple.Identity.Infrastructure.Contracts.Notifications;
+using Infrastructure.Contracts.Interfaces.NotificationHandlers;
+using Infrastructure.Contracts.Notifications;
 using Infrastructure.Contracts.Commands;
 using System.Text.Json;
 using Infrastructure.Contracts.Enums.Outbox;
 
 
-namespace Exemple.Identity.Infrastructure.NotificationHandlers;
+namespace Infrastructure.NotificationHandlers;
 
 public class VerificationCodeCreatedNotificationHandler : IVerificationCodeCreatedNotificationHandler
 {

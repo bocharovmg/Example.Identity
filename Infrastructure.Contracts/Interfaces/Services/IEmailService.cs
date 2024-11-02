@@ -1,7 +1,7 @@
 ﻿using System.Net.Mail;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
+namespace Infrastructure.Contracts.Interfaces.Services;
 
 public interface IEmailService
 {

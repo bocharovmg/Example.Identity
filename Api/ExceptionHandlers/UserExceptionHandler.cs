@@ -1,10 +1,10 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Exceptions;
+﻿using Infrastructure.Contracts.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 
 
-namespace Exemple.Identity.Api.ExceptionHandlers;
+namespace Api.ExceptionHandlers;
 
 public class UserExceptionHandler : IExceptionHandler
 {

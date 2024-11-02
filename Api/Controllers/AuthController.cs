@@ -1,14 +1,14 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Exemple.Identity.Api.Contracts.Requests.User;
-using Exemple.Identity.Domain.Contracts.Commands;
-using Exemple.Identity.Domain.Contracts.Dtos;
-using Exemple.Identity.Domain.Contracts.Queries;
-using Exemple.Identity.Api.Contracts.Requests.VerificationCode;
+using Api.Contracts.Requests.User;
+using Domain.Contracts.Commands;
+using Domain.Contracts.Dtos;
+using Domain.Contracts.Queries;
+using Api.Contracts.Requests.VerificationCode;
 
 
-namespace Exemple.Identity.Api.Controllers;
+namespace Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

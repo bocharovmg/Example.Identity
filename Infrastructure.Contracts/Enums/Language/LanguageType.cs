@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Infrastructure.Contracts.Enums.Language;
+﻿namespace Infrastructure.Contracts.Enums.Language;
 
 /// <summary>
 /// LanguageType

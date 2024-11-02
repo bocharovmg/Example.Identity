@@ -1,12 +1,12 @@
 ﻿using Api.Extensions;
 using AutoMapper;
-using Exemple.Identity.Api.Contracts.Requests.User;
-using Exemple.Identity.Domain.Contracts.Commands;
-using Exemple.Identity.Domain.Contracts.Queries;
+using Api.Contracts.Requests.User;
+using Domain.Contracts.Commands;
+using Domain.Contracts.Queries;
 using System.Security.Cryptography;
 
 
-namespace Exemple.Identity.Api.Profiles
+namespace Api.Profiles
 {
     public class UserProfile : Profile
     {

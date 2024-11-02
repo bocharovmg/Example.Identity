@@ -1,8 +1,9 @@
-﻿using Exemple.Identity.Domain.Contracts.Dtos;
+﻿using Domain.Contracts.Interfaces.SeedWork;
+using Domain.Contracts.Dtos;
 using MediatR;
 
 
-namespace Exemple.Identity.Domain.Contracts.Commands;
+namespace Domain.Contracts.Commands;
 
 public class SignUpCommand(
     string name,
@@ -10,7 +11,8 @@ public class SignUpCommand(
     string? alternativeEmail,
     string password
 ) :
-    IRequest<AuthDto>
+    IRequest<AuthDto>,
+    ITransactional
 {
     public virtual string Name { get; private init; } = name;
 

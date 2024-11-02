@@ -1,7 +1,7 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Enums.User;
+﻿using Infrastructure.Contracts.Enums.User;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Dtos;
+namespace Infrastructure.Contracts.Dtos;
 
 public class UserDto
 {

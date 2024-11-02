@@ -1,12 +1,11 @@
 ﻿using MediatR;
-using Exemple.Identity.Domain.Contracts.Interfaces.CommandHandlers;
-using DomainCommands = Exemple.Identity.Domain.Contracts.Commands;
-using Exemple.Identity.Abstractions.Core.Commands;
-using InfrastructureCommands = Exemple.Identity.Infrastructure.Contracts.Commands;
-using InfrastructureQueries = Exemple.Identity.Infrastructure.Contracts.Queries;
+using Domain.Contracts.Interfaces.CommandHandlers;
+using DomainCommands = Domain.Contracts.Commands;
+using InfrastructureCommands = Infrastructure.Contracts.Commands;
+using InfrastructureQueries = Infrastructure.Contracts.Queries;
 
 
-namespace Exemple.Identity.Domain.CommandHandlers;
+namespace Domain.CommandHandlers;
 
 public class SetupPasswordCommandCommandHandler : ISetupPasswordCommandCommandHandler
 {
@@ -28,43 +27,26 @@ public class SetupPasswordCommandCommandHandler : ISetupPasswordCommandCommandHa
         var userId = await _mediator.Send(getUserIdRequest, cancellationToken);
         #endregion
 
-        await _mediator.Send(new BeginChangesCommand());
+        #region confirm verification code
+        var confirmVerificationCodeRequest = new DomainCommands
+            .ConfirmVerificationCodeCommand(request.VerificationCode);
 
-        try
+        if (!await _mediator.Send(confirmVerificationCodeRequest, cancellationToken))
         {
-            #region confirm verification code
-            var confirmVerificationCodeRequest = new DomainCommands
-                .ConfirmVerificationCodeCommand(request.VerificationCode);
-
-            if (!await _mediator.Send(confirmVerificationCodeRequest, cancellationToken))
-            {
-                await _mediator.Send(new DiscardChangesCommand());
-
-                return false;
-            }
-            #endregion
-
-            #region setup password
-            var setupPasswordRequest = new InfrastructureCommands
-                .SetupPasswordCommand(userId, request.Password);
-
-            if (!await _mediator.Send(setupPasswordRequest, cancellationToken))
-            {
-                await _mediator.Send(new DiscardChangesCommand());
-
-                return false;
-            }
-            #endregion
-
-            await _mediator.Send(new ApplyChangesCommand(), cancellationToken);
-
-            return true;
+            return false;
         }
-        catch
+        #endregion
+
+        #region setup password
+        var setupPasswordRequest = new InfrastructureCommands
+            .SetupPasswordCommand(userId, request.Password);
+
+        if (!await _mediator.Send(setupPasswordRequest, cancellationToken))
         {
-            await _mediator.Send(new DiscardChangesCommand());
-
-            throw;
+            return false;
         }
+        #endregion
+
+        return true;
     }
 }

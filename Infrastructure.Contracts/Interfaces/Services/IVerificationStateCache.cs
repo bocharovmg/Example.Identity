@@ -1,7 +1,7 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Enums.User;
+﻿using Infrastructure.Contracts.Enums.User;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Interfaces.Services
+namespace Infrastructure.Contracts.Interfaces.Services
 {
     public interface IVerificationStateCache
     {

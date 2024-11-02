@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Exemple.Identity.Infrastructure.Contracts.Notifications;
+using Infrastructure.Contracts.Notifications;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Interfaces.NotificationHandlers;
+namespace Infrastructure.Contracts.Interfaces.NotificationHandlers;
 
 public interface IVerificationCodeCreatedNotificationHandler : INotificationHandler<VerificationCodeCreatedNotification>;

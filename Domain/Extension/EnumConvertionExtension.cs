@@ -1,7 +1,7 @@
-﻿using InfrastructureEnums = Exemple.Identity.Infrastructure.Contracts.Enums;
+﻿using InfrastructureEnums = Infrastructure.Contracts.Enums;
 
 
-namespace Exemple.Identity.Domain.Extension;
+namespace Domain.Extension;
 
 public static class EnumConvertionExtension
 {

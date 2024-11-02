@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Domain.Security;
+﻿namespace Domain.Security;
 
 public class JwtOptions
 {

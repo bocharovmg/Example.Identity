@@ -1,10 +1,10 @@
-﻿using Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
+﻿using Abstractions.Infrastructure.ConnectionManager;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 
-namespace Exemple.Identity.Infrastructure.ConnectionManager;
+namespace Infrastructure.ConnectionManager;
 
 public class SqlConnectionManager : ISqlConnectionManager
 {

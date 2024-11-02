@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace Exemple.Identity.Api.Contracts.Requests.SecurityToken;
+namespace Api.Contracts.Requests.SecurityToken;
 
 public class ValidateTokenRequest
 {

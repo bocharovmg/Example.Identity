@@ -1,7 +1,7 @@
-﻿using Exemple.Identity.Infrastructure.Contracts;
+﻿using Infrastructure.Contracts;
 
 
-namespace Exemple.Identity.Api.Extensions;
+namespace Api.Extensions;
 
 public static class HttpContextExtension
 {

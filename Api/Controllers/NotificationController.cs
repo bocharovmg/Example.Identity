@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Exemple.Identity.Api.Contracts.Requests.VerificationCode;
-using Exemple.Identity.Infrastructure.Contracts;
-using DomainCommands = Exemple.Identity.Domain.Contracts.Commands;
-using DomainQueries = Exemple.Identity.Domain.Contracts.Queries;
+using Api.Contracts.Requests.VerificationCode;
+using Infrastructure.Contracts;
+using DomainCommands = Domain.Contracts.Commands;
+using DomainQueries = Domain.Contracts.Queries;
 
 
-namespace Exemple.Identity.Api.Controllers;
+namespace Api.Controllers;
 
 [ApiController]
 [Route("[controller]")]

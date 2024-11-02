@@ -1,11 +1,11 @@
-﻿using Exemple.Identity.Abstractions.Core.Extensions;
-using Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
-using Exemple.Identity.Infrastructure.Contracts.Commands;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.QueryHandlers;
+﻿using Abstractions.Core.Extensions;
+using Abstractions.Infrastructure.ConnectionManager;
+using Infrastructure.Contracts.Commands;
+using Infrastructure.Contracts.Interfaces.QueryHandlers;
 using Dapper;
 
 
-namespace Exemple.Identity.Infrastructure.CommandHandlers;
+namespace Infrastructure.CommandHandlers;
 
 public class ConfirmVerificationCodeCommandHandler : IConfirmVerificationCodeCommandHandler
 {

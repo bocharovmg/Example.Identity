@@ -1,5 +1,5 @@
-using Exemple.Identity.Api.Configurations;
-using Exemple.Identity.Api.Extensions;
+using Api.Configurations;
+using Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

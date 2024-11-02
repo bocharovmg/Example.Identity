@@ -1,19 +1,18 @@
 ﻿using MediatR;
 using AutoMapper;
-using DomainCommands = Exemple.Identity.Domain.Contracts.Commands;
-using DomainEnums = Exemple.Identity.Domain.Contracts.Enums;
-using Exemple.Identity.Domain.Contracts.Interfaces.CommandHandlers;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
-using Exemple.Identity.Abstractions.Core.Commands;
-using Exemple.Identity.Domain.Contracts.Dtos;
-using InfrastructureCommands = Exemple.Identity.Infrastructure.Contracts.Commands;
-using InfrastructureQueries = Exemple.Identity.Infrastructure.Contracts.Queries;
-using InfrastructureNotifications = Exemple.Identity.Infrastructure.Contracts.Notifications;
-using InfrastructureEnums = Exemple.Identity.Infrastructure.Contracts.Enums;
-using Exemple.Identity.Domain.Extension;
+using DomainCommands = Domain.Contracts.Commands;
+using DomainEnums = Domain.Contracts.Enums;
+using Domain.Contracts.Interfaces.CommandHandlers;
+using Infrastructure.Contracts.Interfaces.Services;
+using Domain.Contracts.Dtos;
+using InfrastructureCommands = Infrastructure.Contracts.Commands;
+using InfrastructureQueries = Infrastructure.Contracts.Queries;
+using InfrastructureNotifications = Infrastructure.Contracts.Notifications;
+using InfrastructureEnums = Infrastructure.Contracts.Enums;
+using Domain.Extension;
 
 
-namespace Exemple.Identity.Domain.CommandHandlers;
+namespace Domain.CommandHandlers;
 
 public class CreateAndSendVerificationCodeCommandHandler : ICreateAndSendVerificationCodeCommandHandler
 {
@@ -42,7 +41,7 @@ public class CreateAndSendVerificationCodeCommandHandler : ICreateAndSendVerific
 
         var verificationStateType = verificationField.ToVerificationStateType();
 
-        #region get user id
+        #region get user id by email
         var getUserIdRequest = new InfrastructureQueries.GetUserIdByLoginQuery(request.Email);
 
         var userId = await _mediator.Send(getUserIdRequest, cancellationToken);
@@ -54,23 +53,12 @@ public class CreateAndSendVerificationCodeCommandHandler : ICreateAndSendVerific
         var user = await _mediator.Send(getUserRequest, cancellationToken);
         #endregion
 
-        #region try get and return existing verification state
+        #region try get verification state lifetime from the cache
         var lifetime = await _verificationStateCache.GetLifetimeAsync(userId, verificationStateType, cancellationToken);
-
-        if (lifetime.GetValueOrDefault() > 0)
-        {
-            return new VerificationStateDto
-            {
-                Countdown = lifetime,
-                VerificationState = (DomainEnums.User.VerificationStateType)verificationStateType
-            };
-        }
         #endregion
 
-        try
+        if (!lifetime.HasValue)
         {
-            await _mediator.Send(new BeginChangesCommand(), cancellationToken);
-
             #region generate verification code
             var generateVerificationCodeRequest = new InfrastructureCommands
                 .GenerateVerificationCodeCommand(userId, verificationField);
@@ -78,32 +66,24 @@ public class CreateAndSendVerificationCodeCommandHandler : ICreateAndSendVerific
             var verificationCode = await _mediator.Send(generateVerificationCodeRequest, cancellationToken);
             #endregion
 
-            #region create new verification state
+            #region save new verification state lifetime to the cache
             lifetime = 120;
 
             await _verificationStateCache.AddAsync(userId, verificationStateType, lifetime.Value, cancellationToken);
             #endregion
 
-            await _mediator.Send(new ApplyChangesCommand(), cancellationToken);
-
-            #region send verification code
-            var sendVerificationCodeRequest = new InfrastructureNotifications
+            #region publish notification: verification code changed
+            var verificationCodeCreatedNotification = new InfrastructureNotifications
                 .VerificationCodeCreatedNotification(user.Email, verificationCode, verificationField);
 
-            await _mediator.Publish(sendVerificationCodeRequest, cancellationToken);
+            await _mediator.Publish(verificationCodeCreatedNotification, cancellationToken);
             #endregion
-
-            return new VerificationStateDto
-            {
-                Countdown = lifetime,
-                VerificationState = (DomainEnums.User.VerificationStateType)verificationStateType
-            };
         }
-        catch
+
+        return new VerificationStateDto
         {
-            await _mediator.Send(new DiscardChangesCommand(), cancellationToken);
-
-            throw;
-        }
+            Countdown = lifetime,
+            VerificationState = (DomainEnums.User.VerificationStateType)verificationStateType
+        };
     }
 }

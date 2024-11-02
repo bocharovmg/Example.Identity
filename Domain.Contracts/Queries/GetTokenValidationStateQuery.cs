@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Domain.Contracts.Enums.Jwt;
+﻿using Domain.Contracts.Enums.Jwt;
 using MediatR;
 
 
-namespace Exemple.Identity.Domain.Contracts.Queries;
+namespace Domain.Contracts.Queries;
 
 public class GetTokenValidationStateQuery(string securityToken) : IRequest<TokenValidationState>
 {

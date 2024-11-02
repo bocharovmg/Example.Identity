@@ -1,6 +1,6 @@
 ﻿using Dapper;
-using Exemple.Identity.Abstractions.Core.Extensions;
-using Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
+using Abstractions.Core.Extensions;
+using Abstractions.Infrastructure.ConnectionManager;
 using Infrastructure.Contracts.Commands;
 using Infrastructure.Contracts.Interfaces.CommandHandlers;
 

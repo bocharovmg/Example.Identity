@@ -1,5 +1,5 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
-using Exemple.Identity.Infrastructure.Services.Email;
+﻿using Infrastructure.Contracts.Interfaces.Services;
+using Infrastructure.Services.Email;
 
 
 namespace Notification.Api.Configurations;

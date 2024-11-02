@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Enums.User;
+﻿using Infrastructure.Contracts.Enums.User;
 using MediatR;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Queries;
+namespace Infrastructure.Contracts.Queries;
 
 public class GetVerificationStateTypeQuery(
     Guid userId

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Exemple.Identity.Api.Contracts.Requests.VerificationCode;
-using Exemple.Identity.Domain.Contracts.Commands;
-using Exemple.Identity.Domain.Contracts.Queries;
+using Api.Contracts.Requests.VerificationCode;
+using Domain.Contracts.Commands;
+using Domain.Contracts.Queries;
 
 
-namespace Exemple.Identity.Api.Profiles
+namespace Api.Profiles
 {
     public class VerificationCodeProfile : Profile
     {

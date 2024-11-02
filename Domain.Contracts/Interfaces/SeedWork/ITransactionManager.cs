@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Domain.Contracts.Interfaces.SeedWork
+﻿namespace Domain.Contracts.Interfaces.SeedWork
 {
     public interface ITransactionManager
     {

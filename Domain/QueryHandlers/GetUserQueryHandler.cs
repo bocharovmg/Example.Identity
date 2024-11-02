@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Exemple.Identity.Domain.Contracts.Dtos;
-using Exemple.Identity.Domain.Contracts.Interfaces.QueryHandlers;
-using DomainQueries = Exemple.Identity.Domain.Contracts.Queries;
-using InfrastructureQueries = Exemple.Identity.Infrastructure.Contracts.Queries;
+using Domain.Contracts.Dtos;
+using Domain.Contracts.Interfaces.QueryHandlers;
+using DomainQueries = Domain.Contracts.Queries;
+using InfrastructureQueries = Infrastructure.Contracts.Queries;
 using MediatR;
 
 
-namespace Exemple.Identity.Domain.QueryHandlers;
+namespace Domain.QueryHandlers;
 
 public class GetUserQueryHandler : IGetUserQueryHandler
 {

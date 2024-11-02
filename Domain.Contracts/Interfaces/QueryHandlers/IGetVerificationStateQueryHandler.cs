@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Domain.Contracts.Dtos;
-using Exemple.Identity.Domain.Contracts.Queries;
+﻿using Domain.Contracts.Dtos;
+using Domain.Contracts.Queries;
 using MediatR;
 
 
-namespace Exemple.Identity.Domain.Contracts.Interfaces.QueryHandlers;
+namespace Domain.Contracts.Interfaces.QueryHandlers;
 
 public interface IGetVerificationStateQueryHandler : IRequestHandler<GetVerificationStateQuery, VerificationStateDto>;

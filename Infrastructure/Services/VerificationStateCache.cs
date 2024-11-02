@@ -1,9 +1,9 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Enums.User;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
+﻿using Infrastructure.Contracts.Enums.User;
+using Infrastructure.Contracts.Interfaces.Services;
 using Microsoft.Extensions.Caching.Memory;
 
 
-namespace Exemple.Identity.Infrastructure.Services;
+namespace Infrastructure.Services;
 
 public class VerificationStateCache : IVerificationStateCache
 {

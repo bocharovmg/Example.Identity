@@ -1,8 +1,8 @@
-﻿using Exemple.Identity.Infrastructure.Contracts.Enums.User;
+﻿using Infrastructure.Contracts.Enums.User;
 using MediatR;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Notifications;
+namespace Infrastructure.Contracts.Notifications;
 
 public class VerificationCodeCreatedNotification(
     string email,

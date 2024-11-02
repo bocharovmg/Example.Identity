@@ -1,12 +1,12 @@
-﻿using Exemple.Identity.Domain.Contracts.Enums.Jwt;
-using Exemple.Identity.Domain.Security;
+﻿using Domain.Contracts.Enums.Jwt;
+using Domain.Security;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 
-namespace Exemple.Identity.Domain.Models;
+namespace Domain.Models;
 
 public sealed class SecurityTokenModel
 {

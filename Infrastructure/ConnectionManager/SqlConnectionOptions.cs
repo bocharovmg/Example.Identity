@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 
 
-namespace Exemple.Identity.Infrastructure.ConnectionManager
+namespace Infrastructure.ConnectionManager
 {
     public class SqlConnectionOptions
     {

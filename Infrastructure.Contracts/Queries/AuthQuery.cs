@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 
-namespace Exemple.Identity.Infrastructure.Contracts.Queries;
+namespace Infrastructure.Contracts.Queries;
 
 public class AuthQuery(
     string login,

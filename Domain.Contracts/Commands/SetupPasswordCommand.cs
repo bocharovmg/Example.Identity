@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 
-namespace Exemple.Identity.Domain.Contracts.Commands;
+namespace Domain.Contracts.Commands;
 
 public class SetupPasswordCommand : IRequest<bool>
 {

@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
-using Exemple.Identity.Domain.Configurations;
-using Exemple.Identity.Infrastructure.Configuration;
+using Domain.Configurations;
+using Infrastructure.Configuration;
 
 
-namespace Exemple.Identity.Api.Configurations;
+namespace Api.Configurations;
 
 public static class ServicesConfiguration
 {
@@ -21,6 +21,8 @@ public static class ServicesConfiguration
             .AddMediatR(
                 configuration =>
                 {
+                    configuration.ConfigureDomainBehaviors();
+
                     configuration.ConfigureDomainHandlers();
 
                     configuration.ConfigureInfrastructureHandlers();

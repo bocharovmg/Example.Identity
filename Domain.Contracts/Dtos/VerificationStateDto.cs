@@ -1,7 +1,7 @@
-﻿using Exemple.Identity.Domain.Contracts.Enums.User;
+﻿using Domain.Contracts.Enums.User;
 
 
-namespace Exemple.Identity.Domain.Contracts.Dtos;
+namespace Domain.Contracts.Dtos;
 
 public class VerificationStateDto
 {

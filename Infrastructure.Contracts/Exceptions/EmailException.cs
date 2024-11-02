@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Infrastructure.Contracts.Exceptions;
+﻿namespace Infrastructure.Contracts.Exceptions;
 
 public class EmailException : Exception
 {

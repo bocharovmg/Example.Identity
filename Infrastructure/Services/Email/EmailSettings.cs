@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Infrastructure.Services.Email;
+﻿namespace Infrastructure.Services.Email;
 
 public class EmailSettings
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace Exemple.Identity.Api.Contracts.Requests.User;
+namespace Api.Contracts.Requests.User;
 
 public class SetupPasswordRequest
 {

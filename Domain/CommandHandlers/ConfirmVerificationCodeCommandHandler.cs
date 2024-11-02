@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using AutoMapper;
-using DomainCommands = Exemple.Identity.Domain.Contracts.Commands;
-using Exemple.Identity.Domain.Contracts.Interfaces.CommandHandlers;
-using InfrastructureCommands = Exemple.Identity.Infrastructure.Contracts.Commands;
+using DomainCommands = Domain.Contracts.Commands;
+using Domain.Contracts.Interfaces.CommandHandlers;
+using InfrastructureCommands = Infrastructure.Contracts.Commands;
 
 
-namespace Exemple.Identity.Domain.CommandHandlers;
+namespace Domain.CommandHandlers;
 
 public class ConfirmVerificationCodeCommandHandler : IConfirmVerificationCodeCommandHandler
 {

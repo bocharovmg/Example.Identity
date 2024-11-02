@@ -1,15 +1,15 @@
 ﻿using MediatR;
-using Exemple.Identity.Domain.Contracts.Dtos;
-using Exemple.Identity.Domain.Contracts.Interfaces.QueryHandlers;
-using DomainQueries = Exemple.Identity.Domain.Contracts.Queries;
-using DomainEnums = Exemple.Identity.Domain.Contracts.Enums;
-using Exemple.Identity.Domain.Models;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
-using InfrastructureQueries = Exemple.Identity.Infrastructure.Contracts.Queries;
-using InfrastructureEnums = Exemple.Identity.Infrastructure.Contracts.Enums;
+using Domain.Contracts.Dtos;
+using Domain.Contracts.Interfaces.QueryHandlers;
+using DomainQueries = Domain.Contracts.Queries;
+using DomainEnums = Domain.Contracts.Enums;
+using Domain.Models;
+using Infrastructure.Contracts.Interfaces.Services;
+using InfrastructureQueries = Infrastructure.Contracts.Queries;
+using InfrastructureEnums = Infrastructure.Contracts.Enums;
 
 
-namespace Exemple.Identity.Domain.QueryHandlers;
+namespace Domain.QueryHandlers;
 
 public class GetVerificationStateQueryHandler : IGetVerificationStateQueryHandler
 {

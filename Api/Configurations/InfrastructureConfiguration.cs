@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using Exemple.Identity.Abstractions.Infrastructure.ConnectionManager;
-using Exemple.Identity.Infrastructure.CommandHandlers;
-using Exemple.Identity.Infrastructure.Configuration.Profiles;
-using Exemple.Identity.Infrastructure.ConnectionManager;
-using Exemple.Identity.Infrastructure.Contracts.Interfaces.Services;
-using Exemple.Identity.Infrastructure.NotificationHandlers;
-using Exemple.Identity.Infrastructure.Services;
+using Abstractions.Infrastructure.ConnectionManager;
+using Infrastructure.CommandHandlers;
+using Infrastructure.Configuration.Profiles;
+using Infrastructure.ConnectionManager;
+using Infrastructure.Contracts.Interfaces.Services;
+using Infrastructure.NotificationHandlers;
+using Infrastructure.Services;
 using Infrastructure.CommandHandlers;
 
 
-namespace Exemple.Identity.Infrastructure.Configuration;
+namespace Infrastructure.Configuration;
 
 public static class InfrastructureConfiguration
 {

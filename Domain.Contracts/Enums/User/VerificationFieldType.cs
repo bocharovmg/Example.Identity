@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Domain.Contracts.Enums.User;
+﻿namespace Domain.Contracts.Enums.User;
 
 public enum VerificationFieldType
 {

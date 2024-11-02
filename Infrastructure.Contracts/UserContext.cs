@@ -1,4 +1,4 @@
-﻿namespace Exemple.Identity.Infrastructure.Contracts;
+﻿namespace Infrastructure.Contracts;
 
 public class UserContext
 {
