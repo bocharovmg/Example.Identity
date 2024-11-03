@@ -7,9 +7,7 @@ using Domain.Contracts.Interfaces.CommandHandlers;
 using Infrastructure.Contracts.Interfaces.Services;
 using Domain.Contracts.Dtos;
 using InfrastructureCommands = Infrastructure.Contracts.Commands;
-using InfrastructureQueries = Infrastructure.Contracts.Queries;
 using InfrastructureEnums = Infrastructure.Contracts.Enums;
-using Domain.Extension;
 
 
 namespace Domain.CommandHandlers;
