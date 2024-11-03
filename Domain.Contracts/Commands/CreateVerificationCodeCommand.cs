@@ -1,7 +1,7 @@
-﻿using Domain.Contracts.Dtos;
+﻿using MediatR;
+using Domain.Contracts.Dtos;
 using Domain.Contracts.Enums.User;
 using Domain.Contracts.Interfaces.SeedWork;
-using MediatR;
 
 
 namespace Domain.Contracts.Commands;

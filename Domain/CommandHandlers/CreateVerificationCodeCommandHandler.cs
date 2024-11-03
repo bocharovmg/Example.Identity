@@ -39,36 +39,18 @@ public class CreateVerificationCodeCommandHandler : ICreateVerificationCodeComma
     {
         var verificationField = (InfrastructureEnums.User.VerificationFieldType)request.VerificationField;
 
-        var verificationStateType = verificationField.ToVerificationStateType();
+        #region generate verification code
+        var tryGenerateVerificationCodeRequest = new InfrastructureCommands
+            .TryGenerateVerificationCodeCommand(request.Email, verificationField);
 
-        #region get user id by email
-        var getUserIdRequest = new InfrastructureQueries.GetUserIdByLoginQuery(request.Email);
-
-        var userId = await _mediator.Send(getUserIdRequest, cancellationToken);
+        var verificationCodeDto = await _mediator.Send(tryGenerateVerificationCodeRequest, cancellationToken);
         #endregion
 
-        #region try get verification state lifetime from the cache
-        var lifetime = await _verificationStateLifetimeService.GetLifetimeAsync(userId, verificationStateType, cancellationToken);
-        #endregion
-
-        if (!lifetime.HasValue)
+        if (!string.IsNullOrWhiteSpace(verificationCodeDto.VerificationCode))
         {
-            #region generate verification code
-            var generateVerificationCodeRequest = new InfrastructureCommands
-                .GenerateVerificationCodeCommand(userId, verificationField);
-
-            var verificationCode = await _mediator.Send(generateVerificationCodeRequest, cancellationToken);
-            #endregion
-
-            #region save new verification state lifetime to the cache
-            lifetime = 120;
-
-            await _verificationStateLifetimeService.AddAsync(userId, verificationStateType, lifetime.Value, cancellationToken);
-            #endregion
-
             #region publish notification: verification code changed
             var verificationCodeCreatedNotification = new DomainNotifications
-                .VerificationCodeCreatedNotification(request.Email, verificationCode, request.VerificationField);
+                .VerificationCodeCreatedNotification(request.Email, verificationCodeDto.VerificationCode, request.VerificationField);
 
             await _mediator.Publish(verificationCodeCreatedNotification, cancellationToken);
             #endregion
@@ -76,8 +58,8 @@ public class CreateVerificationCodeCommandHandler : ICreateVerificationCodeComma
 
         return new VerificationStateDto
         {
-            Countdown = lifetime,
-            VerificationState = (DomainEnums.User.VerificationStateType)verificationStateType
+            Countdown = verificationCodeDto.Lifetime,
+            VerificationState = (DomainEnums.User.VerificationStateType)verificationCodeDto.VerificationState
         };
     }
 }

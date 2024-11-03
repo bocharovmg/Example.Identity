@@ -28,8 +28,7 @@ public class SetupPasswordCommandCommandHandler : ISetupPasswordCommandCommandHa
         #endregion
 
         #region confirm verification code
-        var confirmVerificationCodeRequest = new DomainCommands
-            .ConfirmVerificationCodeCommand(request.VerificationCode);
+        var confirmVerificationCodeRequest = new InfrastructureCommands.ConfirmVerificationCodeCommand(request.VerificationCode);
 
         if (!await _mediator.Send(confirmVerificationCodeRequest, cancellationToken))
         {

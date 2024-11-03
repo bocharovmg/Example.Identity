@@ -33,7 +33,7 @@ public static class InfrastructureConfiguration
 
         configuration.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
 
-        configuration.RegisterServicesFromAssembly(typeof(GenerateVerificationCodeCommandHandler).Assembly);
+        configuration.RegisterServicesFromAssembly(typeof(TryGenerateVerificationCodeCommandHandler).Assembly);
 
         configuration.RegisterServicesFromAssembly(typeof(OpenUserAccessCommandHandler).Assembly);
 
