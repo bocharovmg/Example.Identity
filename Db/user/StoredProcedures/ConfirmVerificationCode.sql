@@ -9,4 +9,5 @@ BEGIN
 		[user].UserAttributes ua_
 	WHERE
 		ua_.VerificationCode = @VerificationCode
+		AND @VerificationCode <> ''
 END

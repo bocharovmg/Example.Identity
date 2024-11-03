@@ -1,9 +1,10 @@
 ﻿using MediatR;
-using Infrastructure.Contracts.Interfaces.NotificationHandlers;
-using Infrastructure.Contracts.Notifications;
 using Infrastructure.Contracts.Commands;
 using System.Text.Json;
 using Infrastructure.Contracts.Enums.Outbox;
+using Domain.Contracts.Interfaces.NotificationHandlers;
+using Domain.Contracts.Notifications;
+using Domain.Contracts.Enums.User;
 
 
 namespace Infrastructure.NotificationHandlers;
@@ -22,9 +23,9 @@ public class VerificationCodeCreatedNotificationHandler : IVerificationCodeCreat
         #region prepare message data
         var subject = request.VerificationField switch
         {
-            Contracts.Enums.User.VerificationFieldType.Email => "Подтверждение email",
-            Contracts.Enums.User.VerificationFieldType.AlternativeEmail => "Подтверждение дополнительного email",
-            Contracts.Enums.User.VerificationFieldType.Password => "Восстановление пароля",
+            VerificationFieldType.Email => "Подтверждение email",
+            VerificationFieldType.AlternativeEmail => "Подтверждение дополнительного email",
+            VerificationFieldType.Password => "Восстановление пароля",
             _ => throw new NotImplementedException($"Unknown verification field {request.VerificationField}")
         };
 

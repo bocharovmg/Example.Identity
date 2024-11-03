@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using DomainCommands = Domain.Contracts.Commands;
+using DomainQueries = Domain.Contracts.Queries;
+using DomainNotifications = Domain.Contracts.Notifications;
 using Domain.Contracts.Dtos;
 using Domain.Contracts.Interfaces.CommandHandlers;
 using InfrastructureCommands = Infrastructure.Contracts.Commands;
-using DomainQueries = Domain.Contracts.Queries;
 using Domain.Contracts.Enums.User;
 
 
@@ -34,10 +35,11 @@ public class SignUpCommandHandler : ISignUpCommandHandler
         var userId = await _mediator.Send(createUserRequest, cancellationToken);
         #endregion
 
-        #region create verification code
-        var createVerificationCodeRequest = new DomainCommands.CreateAndSendVerificationCodeCommand(request.Email, VerificationFieldType.Email);
+        #region publish notification: user created
+        var userCreatedNotification = new DomainNotifications
+            .UserCreatedNotification(userId, request.Name, request.Email, request.AlternativeEmail);
 
-        await _mediator.Send(createVerificationCodeRequest, cancellationToken);
+        await _mediator.Publish(userCreatedNotification);
         #endregion
 
         #region get user

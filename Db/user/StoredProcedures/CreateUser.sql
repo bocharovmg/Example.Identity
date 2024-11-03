@@ -31,7 +31,7 @@ BEGIN
 
 	DECLARE
 		@UserId UNIQUEIDENTIFIER
-		, @VerificationCode_Email NVARCHAR(6) = [user].[GenerateCode](@ExcludedValues)
+		, @VerificationCode_Email NVARCHAR(6) = ''
 
 
 	DECLARE
@@ -43,7 +43,7 @@ BEGIN
 		INSERT INTO @ExcludedValues
 		VALUES (@VerificationCode_Email)
 
-		SET @VerificationCode_AlternativeEmail = [user].[GenerateCode](@ExcludedValues)
+		SET @VerificationCode_AlternativeEmail = ''
 	END
 
 

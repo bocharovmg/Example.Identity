@@ -41,7 +41,7 @@ public class NotificationController : ControllerBase
     )
     {
         var createVerificationCodeRequest = new DomainCommands
-            .CreateAndSendVerificationCodeCommand(
+            .CreateVerificationCodeCommand(
                 request.Email,
                 Domain.Contracts.Enums.User.VerificationFieldType.Password
             );
@@ -63,7 +63,7 @@ public class NotificationController : ControllerBase
         #endregion
 
         var createVerificationCodeRequest = new DomainCommands
-            .CreateAndSendVerificationCodeCommand(
+            .CreateVerificationCodeCommand(
                 user.Email,
                 Domain.Contracts.Enums.User.VerificationFieldType.Email
             );
@@ -85,7 +85,7 @@ public class NotificationController : ControllerBase
         #endregion
 
         var createVerificationCodeRequest = new DomainCommands
-            .CreateAndSendVerificationCodeCommand(
+            .CreateVerificationCodeCommand(
                 user.Email,
                 Domain.Contracts.Enums.User.VerificationFieldType.AlternativeEmail
             );

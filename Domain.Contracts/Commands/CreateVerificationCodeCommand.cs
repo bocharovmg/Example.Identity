@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Domain.Contracts.Commands;
 
-public class CreateAndSendVerificationCodeCommand(string email, VerificationFieldType verificationField) : IRequest<VerificationStateDto>, ITransactional
+public class CreateVerificationCodeCommand(string email, VerificationFieldType verificationField) : IRequest<VerificationStateDto>, ITransactional
 {
     public string Email { get; private init; } = email;
 

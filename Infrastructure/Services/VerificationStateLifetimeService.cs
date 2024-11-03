@@ -5,13 +5,13 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace Infrastructure.Services;
 
-public class VerificationStateCache : IVerificationStateCache
+public class VerificationStateLifetimeService : IVerificationStateLifetimeService
 {
     private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1);
 
     private readonly IMemoryCache _cache;
 
-    public VerificationStateCache(IMemoryCache cache)
+    public VerificationStateLifetimeService(IMemoryCache cache)
     {
         _cache = cache;
     }

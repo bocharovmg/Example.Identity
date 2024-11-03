@@ -3,7 +3,7 @@
 
 namespace Infrastructure.Contracts.Interfaces.Services
 {
-    public interface IVerificationStateCache
+    public interface IVerificationStateLifetimeService
     {
         Task AddAsync(Guid userId, VerificationStateType verificationState, int lifetime, CancellationToken cancellationToken = default);
 

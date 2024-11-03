@@ -61,7 +61,7 @@ public static class InfrastructureConfiguration
         this IServiceCollection services
     )
     {
-        services.AddSingleton<IVerificationStateCache, VerificationStateCache>();
+        services.AddSingleton<IVerificationStateLifetimeService, VerificationStateLifetimeService>();
 
         services.AddScoped<ISqlConnectionManager, SqlConnectionManager>();
 

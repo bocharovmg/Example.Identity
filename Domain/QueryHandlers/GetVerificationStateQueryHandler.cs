@@ -15,11 +15,11 @@ public class GetVerificationStateQueryHandler : IGetVerificationStateQueryHandle
 {
     private readonly IMediator _mediator;
 
-    private readonly IVerificationStateCache _verificationStateCache;
+    private readonly IVerificationStateLifetimeService _verificationStateCache;
 
     public GetVerificationStateQueryHandler(
         IMediator mediator,
-        IVerificationStateCache verificationStateCache
+        IVerificationStateLifetimeService verificationStateCache
     )
     {
         _mediator = mediator;
