@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.ConfigureExceptionHandlers();
 builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.ConfigureOutboxAuthorization(builder.Configuration);
 builder.Services.ConfigureDatabaseOptions(builder.Configuration);
 builder.Services.RegisterServices();
 

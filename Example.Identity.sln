@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Db", "Db\Db.sqlproj", "{3920AD17-8DC0-4EE0-A098-574A2296BFA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notification.Api", "Notification.Api\Notification.Api.csproj", "{0B235D59-4628-4517-9FED-1BD67A7DB11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OutboxHandler", "OutboxHandler\OutboxHandler.csproj", "{0B235D59-4628-4517-9FED-1BD67A7DB11D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

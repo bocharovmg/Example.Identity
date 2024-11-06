@@ -14,7 +14,7 @@ namespace Api.Controllers;
 [Authorize]
 public class NotificationController : ControllerBase
 {
-    private ILogger<NotificationController> _logger;
+    private readonly ILogger<NotificationController> _logger;
 
     private readonly IMediator _mediator;
 

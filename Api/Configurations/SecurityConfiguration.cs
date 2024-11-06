@@ -1,4 +1,5 @@
-﻿using Domain.Security;
+﻿using Api.Attributes.Authorization.Outbox;
+using Domain.Security;
 using Infrastructure.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -81,6 +82,15 @@ public static class SecurityConfiguration
                     .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
                     .RequireAuthenticatedUser().Build());
             });
+
+        return services;
+    }
+
+    public static IServiceCollection ConfigureOutboxAuthorization(this IServiceCollection services, IConfigurationManager configurationManager)
+    {
+        configurationManager.AddJsonFile("outbox-auth-config.json");
+
+        services.Configure<OutboxAuthOptions>(configurationManager);
 
         return services;
     }

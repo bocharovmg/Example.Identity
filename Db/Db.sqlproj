@@ -70,6 +70,8 @@
     <Folder Include="outbox" />
     <Folder Include="outbox\Tables" />
     <Folder Include="outbox\StoredProcedures" />
+    <Folder Include="outbox\Triggers" />
+    <Folder Include="outbox\UserTypes" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\MigrationHistory.sql" />
@@ -102,8 +104,15 @@
     <Build Include="outbox\Tables\Messages.sql" />
     <Build Include="outbox\StoredProcedures\AddMessage.sql" />
     <Build Include="outbox\StoredProcedures\NextMessage.sql" />
-    <Build Include="outbox\StoredProcedures\RemoveMessage.sql" />
+    <Build Include="outbox\StoredProcedures\SetMessageSuccessStatus.sql" />
     <Build Include="outbox\Tables\MessageTypes.sql" />
+    <Build Include="outbox\Tables\MessageProcessingStatuses.sql" />
+    <Build Include="outbox\StoredProcedures\SetMessageErrorStatus.sql" />
+    <None Include="Scripts\DataMigrations\0005. Create outbox message processing statuses.sql" />
+    <Build Include="outbox\Triggers\TG__outbox__Messages__AutoClear.sql" />
+    <Build Include="outbox\StoredProcedures\GetProcessedMessages.sql" />
+    <Build Include="outbox\StoredProcedures\RemoveProcessedMessages.sql" />
+    <Build Include="outbox\UserTypes\UT_GuidIdentifier.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
