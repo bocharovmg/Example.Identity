@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using Api.Contracts.Requests.VerificationCode;
 using Infrastructure.Contracts;
 using DomainCommands = Domain.Contracts.Commands;
-using DomainQueries = Domain.Contracts.Queries;
 
 
 namespace Api.Controllers;
@@ -56,15 +55,9 @@ public class NotificationController : ControllerBase
         CancellationToken cancellationToken = default
     )
     {
-        #region get user
-        var getUserRequest = new DomainQueries.GetUserQuery(_userContext.UserId);
-
-        var user = await _mediator.Send(getUserRequest, cancellationToken);
-        #endregion
-
         var createVerificationCodeRequest = new DomainCommands
             .CreateVerificationCodeCommand(
-                user.Email,
+                _userContext.Email,
                 Domain.Contracts.Enums.User.VerificationFieldType.Email
             );
 
@@ -78,15 +71,9 @@ public class NotificationController : ControllerBase
         CancellationToken cancellationToken = default
     )
     {
-        #region get user
-        var getUserRequest = new DomainQueries.GetUserQuery(_userContext.UserId);
-
-        var user = await _mediator.Send(getUserRequest, cancellationToken);
-        #endregion
-
         var createVerificationCodeRequest = new DomainCommands
             .CreateVerificationCodeCommand(
-                user.Email,
+                _userContext.Email,
                 Domain.Contracts.Enums.User.VerificationFieldType.AlternativeEmail
             );
 

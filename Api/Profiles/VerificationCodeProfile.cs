@@ -22,8 +22,6 @@ namespace Api.Profiles
 
         private void CreateQueryMap()
         {
-            CreateMap<GetVerificationCodeStateRequest, GetVerificationStateQuery>()
-                .ConstructUsing(src => new GetVerificationStateQuery(src.Email));
         }
     }
 }

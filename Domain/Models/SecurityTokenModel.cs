@@ -1,6 +1,7 @@
 ﻿using Domain.Contracts.Enums.Jwt;
 using Domain.Security;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.ObjectModel;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -12,9 +13,11 @@ public sealed class SecurityTokenModel
 {
     private readonly string _token;
 
-    private readonly IEnumerable<Claim> _claims;
+    private readonly IReadOnlyCollection<Claim> _claims;
 
     public TokenValidationState ValidationState { get; private init; }
+
+    public IReadOnlyCollection<Claim> Claims => _claims;
 
     public SecurityTokenModel(
         JwtOptions options,
@@ -68,7 +71,7 @@ public sealed class SecurityTokenModel
 
         _token = string.Empty;
 
-        _claims = Enumerable.Empty<Claim>();
+        _claims = new List<Claim>();
 
         try
         {
@@ -76,7 +79,7 @@ public sealed class SecurityTokenModel
 
             _token = token;
 
-            _claims = validationResult.Claims;
+            _claims = validationResult.Claims.ToList();
 
             ValidationState = TokenValidationState.Valid;
         }

@@ -3,17 +3,21 @@
 AS
 BEGIN
 	DECLARE
-		@UserAttributeSectionId_Name BIGINT = 1
-		, @UserAttributeSectionId_Email BIGINT = 2
+		-- User attribute sections
+		@UserAttributeSectionId_Email BIGINT = 2
 		, @UserAttributeSectionId_Password BIGINT = 3
 		, @UserAttributeSectionId_AlternativeEmail BIGINT = 4
+		-- Verification state types
+		, @VerificationStateTypeId_Password INT = 1
+		, @VerificationStateTypeId_Email INT = 2
+		, @VerificationStateTypeId_AlternativeEmail INT = 3
 
 
-	SELECT TOP 1
+	SELECT
 		[VerificationState] = CASE
-			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_Password THEN 1
-			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_AlternativeEmail THEN 3
-			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_Email THEN 2
+			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_Password THEN @VerificationStateTypeId_Password
+			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_AlternativeEmail THEN @VerificationStateTypeId_Email
+			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_Email THEN @VerificationStateTypeId_AlternativeEmail
 		END
 	FROM
 		[user].UserAttributes ua_

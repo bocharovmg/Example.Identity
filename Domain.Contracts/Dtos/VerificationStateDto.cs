@@ -8,10 +8,10 @@ public class VerificationStateDto
     /// <summary>
     /// Countdown
     /// </summary>
-    public virtual int? Countdown { get; set; }
+    public virtual int? Countdown { get; init; }
 
     /// <summary>
     /// VerificationState
     /// </summary>
-    public virtual VerificationStateType VerificationState { get; set; }
+    public virtual VerificationStateType VerificationState { get; init; }
 }

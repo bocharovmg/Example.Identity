@@ -1,16 +1,16 @@
-﻿using Domain.Contracts.Dtos;
-using MediatR;
-using System.Security.Claims;
+﻿using MediatR;
+using Domain.Contracts.Dtos;
 
 
 namespace Domain.Contracts.Queries;
 
-public class GetSecurityTokenQuery : IRequest<SecurityTokenDto>
+public class GetSecurityTokenQuery(
+    Guid userId,
+    string email
+) :
+    IRequest<SecurityTokenDto>
 {
-    public virtual Claim[] Claims { get; private init; }
+    public Guid UserId { get; private init; } = userId;
 
-    public GetSecurityTokenQuery(Claim[] claims)
-    {
-        Claims = claims;
-    }
+    public string Email { get; private init; } = email;
 }

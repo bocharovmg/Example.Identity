@@ -6,7 +6,6 @@ using Infrastructure.ConnectionManager;
 using Infrastructure.Contracts.Interfaces.Services;
 using Infrastructure.NotificationHandlers;
 using Infrastructure.Services;
-using Infrastructure.CommandHandlers;
 
 
 namespace Infrastructure.Configuration;
@@ -26,33 +25,11 @@ public static class InfrastructureConfiguration
     private static void RegisterCammandHandlers(MediatRServiceConfiguration configuration)
     {
         configuration.RegisterServicesFromAssembly(typeof(VerificationCodeCreatedNotificationHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(BlockUserAccessCommandHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(ConfirmVerificationCodeCommandHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(TryGenerateVerificationCodeCommandHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(OpenUserAccessCommandHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(SetupPasswordCommandHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(SetupUserLanguageCommandHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(AddOutboxMessageCommandHandler).Assembly);
     }
 
     private static void RegisterQueryHandlers(MediatRServiceConfiguration configuration)
     {
         configuration.RegisterServicesFromAssembly(typeof(AuthQueryHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(GetUserIdByLoginQueryHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(GetUserQueryHandler).Assembly);
-
-        configuration.RegisterServicesFromAssembly(typeof(GetVerificationStateTypeQueryHandler).Assembly);
     }
     #endregion
 

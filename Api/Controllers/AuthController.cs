@@ -34,6 +34,8 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("sign-in")]
+    [Produces("application/json")]
+    [ProducesResponseType<UserDto>(StatusCodes.Status200OK)]
     public async Task<IActionResult> SignInRequestAsync([FromBody] SignInRequest request, CancellationToken cancellationToken = default)
     {
         var signInRequest = _mapper.Map<SignInQuery>(request);

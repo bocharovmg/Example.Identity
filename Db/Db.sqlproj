@@ -113,6 +113,7 @@
     <Build Include="outbox\StoredProcedures\GetProcessedMessages.sql" />
     <Build Include="outbox\StoredProcedures\RemoveProcessedMessages.sql" />
     <Build Include="outbox\UserTypes\UT_GuidIdentifier.sql" />
+    <Build Include="user\Tables\VerificationStateTypes.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
@@ -122,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DataMigrations\0004. Create outbox message types.sql" />
+    <None Include="Scripts\DataMigrations\0006. Cteate verification state types.sql" />
   </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>rd /s /q "$(TargetDir)"</PreBuildEvent>

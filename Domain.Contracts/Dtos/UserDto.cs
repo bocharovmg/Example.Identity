@@ -8,7 +8,7 @@ public class UserDto
     /// <summary>
     /// User Id
     /// </summary>
-    public string UserId { get; set; } = string.Empty;
+    public Guid UserId { get; set; }
 
     /// <summary>
     /// User create date

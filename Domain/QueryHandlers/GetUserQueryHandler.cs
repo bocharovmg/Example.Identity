@@ -33,14 +33,16 @@ public class GetUserQueryHandler : IGetUserQueryHandler
         #endregion
 
         #region get verification state
-        var getVerificationStateRequest = new DomainQueries.GetVerificationStateQuery(userResponse.Email);
+        var getVerificationStatesRequest = new InfrastructureQueries.GetVerificationStatesQuery(userResponse.UserId);
 
-        var verificationState = await _mediator.Send(getVerificationStateRequest, cancellationToken);
+        var verificationStatesResponse = await _mediator.Send(getVerificationStatesRequest, cancellationToken);
+
+        var verificationStates = _mapper.Map<IEnumerable<VerificationStateDto>>(verificationStatesResponse);
         #endregion
 
         var user = _mapper.Map<UserDto>(userResponse);
 
-        user.VerificationState = verificationState;
+        user.VerificationState = verificationStates.First();
 
         return user;
     }

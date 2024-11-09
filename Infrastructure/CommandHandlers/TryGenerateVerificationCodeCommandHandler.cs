@@ -37,14 +37,8 @@ public class TryGenerateVerificationCodeCommandHandler : ITryGenerateVerificatio
     {
         var verificationState = request.VerificationField.ToVerificationStateType();
 
-        #region get user id by email
-        var getUserIdRequest = new GetUserIdByLoginQuery(request.Login);
-
-        var userId = await _mediator.Send(getUserIdRequest, cancellationToken);
-        #endregion
-
         #region try get verification state lifetime from the cache
-        var lifetime = await _verificationStateLifetimeService.GetLifetimeAsync(userId, verificationState, cancellationToken);
+        var lifetime = await _verificationStateLifetimeService.GetLifetimeAsync(request.UserId, verificationState, cancellationToken);
         #endregion
 
         if (!lifetime.HasValue)
@@ -57,11 +51,7 @@ public class TryGenerateVerificationCodeCommandHandler : ITryGenerateVerificatio
                             .QuerySingleAsync<string>(
                                 new CommandDefinition(
                                     "[user].[GenerateVerificationCode]",
-                                    new
-                                    {
-                                        UserId = userId,
-                                        VerificationField = request.VerificationField
-                                    },
+                                    request,
                                     transaction: _connectionManager.Transaction,
                                     commandType: System.Data.CommandType.StoredProcedure,
                                     cancellationToken: cancellationToken
@@ -77,7 +67,7 @@ public class TryGenerateVerificationCodeCommandHandler : ITryGenerateVerificatio
             #region save new verification state lifetime
             lifetime = 120;
 
-            await _verificationStateLifetimeService.AddAsync(userId, verificationState, lifetime.Value, cancellationToken);
+            await _verificationStateLifetimeService.AddAsync(request.UserId, verificationState, lifetime.Value, cancellationToken);
             #endregion
 
             return new VerificationCodeDto

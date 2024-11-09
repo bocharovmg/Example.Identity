@@ -16,8 +16,8 @@ namespace Api.Profiles
 
         private void CreateCommandMaps()
         {
-            CreateMap<ValidateTokenRequest, GetTokenValidationStateQuery>()
-                .ConstructUsing(src => new GetTokenValidationStateQuery(src.SecurityToken));
+            CreateMap<ValidateTokenRequest, GetSecurityTokenStateQuery>()
+                .ConstructUsing(src => new GetSecurityTokenStateQuery(src.SecurityToken));
         }
 
         private void CreateQueryMap()

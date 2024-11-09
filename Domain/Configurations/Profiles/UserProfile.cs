@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Domain.Extension;
 using DomainCommands = Domain.Contracts.Commands;
 using DomainQueries = Domain.Contracts.Queries;
 using DomainDtos = Domain.Contracts.Dtos;
 using InfrastructureCommands = Infrastructure.Contracts.Commands;
 using InfrastructureQueries = Infrastructure.Contracts.Queries;
 using InfrastructureDtos = Infrastructure.Contracts.Dtos;
+using Domain.Contracts.Enums.User;
 
 
 namespace Domain.Configurations.Profiles;
@@ -35,12 +35,16 @@ public class UserProfile : Profile
         CreateMap<DomainQueries.SignInQuery, InfrastructureQueries.AuthQuery>()
             .ConstructUsing(src => new InfrastructureQueries.AuthQuery(src.Login, src.Password));
 
-        CreateMap<DomainDtos.UserDto, DomainQueries.GetSecurityTokenQuery>()
-            .ConstructUsing(src => new DomainQueries.GetSecurityTokenQuery(src.GetClaims()));
+        CreateMap< DomainDtos.UserDto, DomainQueries.GetSecurityTokenQuery>()
+            .ConstructUsing(src => new DomainQueries.GetSecurityTokenQuery(src.UserId, src.Email));
     }
 
     private void CreateDtoMaps()
     {
         CreateMap<InfrastructureDtos.UserDto, DomainDtos.UserDto>();
+
+        CreateMap<InfrastructureDtos.VerificationStateDto, DomainDtos.VerificationStateDto>()
+            .ForMember(dst => dst.Countdown, opt => opt.MapFrom(src => src.Lifetime))
+            .ForMember(dst => dst.VerificationState, opt => opt.MapFrom(src => (VerificationStateType)src.VerificationState));
     }
 }
