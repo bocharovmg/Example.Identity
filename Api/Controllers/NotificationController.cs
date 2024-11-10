@@ -55,13 +55,13 @@ public class NotificationController : ControllerBase
         CancellationToken cancellationToken = default
     )
     {
-        var createVerificationCodeRequest = new DomainCommands
-            .CreateVerificationCodeCommand(
+        var resetVerificationCodeRequest = new DomainCommands
+            .ResetVerificationCodeCommand(
                 _userContext.Email,
                 Domain.Contracts.Enums.User.VerificationFieldType.Email
             );
 
-        var verificationState = await _mediator.Send(createVerificationCodeRequest, cancellationToken);
+        var verificationState = await _mediator.Send(resetVerificationCodeRequest, cancellationToken);
 
         return Ok(verificationState);
     }
@@ -71,13 +71,13 @@ public class NotificationController : ControllerBase
         CancellationToken cancellationToken = default
     )
     {
-        var createVerificationCodeRequest = new DomainCommands
-            .CreateVerificationCodeCommand(
+        var resetVerificationCodeRequest = new DomainCommands
+            .ResetVerificationCodeCommand(
                 _userContext.Email,
                 Domain.Contracts.Enums.User.VerificationFieldType.AlternativeEmail
             );
 
-        var verificationState = await _mediator.Send(createVerificationCodeRequest, cancellationToken);
+        var verificationState = await _mediator.Send(resetVerificationCodeRequest, cancellationToken);
 
         return Ok(verificationState);
     }
