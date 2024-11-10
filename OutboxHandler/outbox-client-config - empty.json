@@ -1,0 +1,10 @@
+{
+  "Address": "<address>",
+  "ApiKeyName": "X-Api-Key",
+  "ApiKeyValue": "<api-key-value>",
+  "EndPoints": {
+    "NextMessageEndPoint": "/outbox/message/next",
+    "MassageSuccessEndPoint": "/outbox/message/{0}/success",
+    "MassageErrorEndPoint": "/outbox/message/{0}/error"
+  }
+}

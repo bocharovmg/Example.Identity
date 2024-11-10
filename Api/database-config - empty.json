@@ -1,0 +1,3 @@
+{
+  "ConnectionString": "Server=<address>;User Id={user};Password=<password>;Database=<db_name>;Persist Security Info=True;Pooling=False;Trust Server Certificate=True;Connect Timeout=60;Command Timeout=5;MultipleActiveResultSets=True; "
+}

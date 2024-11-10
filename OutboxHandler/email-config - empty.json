@@ -1,0 +1,6 @@
+{
+  "Host": "<address>",
+  "Port": 587,
+  "Login": "<email-login>",
+  "Password": "<password>"
+}

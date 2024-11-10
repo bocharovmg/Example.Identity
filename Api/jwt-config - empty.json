@@ -1,0 +1,7 @@
+{
+  "Issuer": "<issuer>",
+  "Audience": "<audience>",
+  "Secret": "<secret>",
+  "AccessTokenExpiration": 30,
+  "RefreshTokenExpiration": 1440
+}
