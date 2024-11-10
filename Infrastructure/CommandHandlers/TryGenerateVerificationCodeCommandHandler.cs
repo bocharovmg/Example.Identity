@@ -8,6 +8,7 @@ using Infrastructure.Contracts.Interfaces.Services;
 using Infrastructure.Contracts.Queries;
 using Infrastructure.Extensions;
 using Infrastructure.Contracts.Dtos;
+using Infrastructure.Contracts.Enums.User;
 
 
 namespace Infrastructure.CommandHandlers;
@@ -37,11 +38,13 @@ public class TryGenerateVerificationCodeCommandHandler : ITryGenerateVerificatio
     {
         var verificationState = request.VerificationField.ToVerificationStateType();
 
+        var userAttributeSection = request.VerificationField.ToUserAttributeSection();
+
         #region try get verification state lifetime from the cache
         var lifetime = await _verificationStateLifetimeService.GetLifetimeAsync(request.UserId, verificationState, cancellationToken);
         #endregion
 
-        if (!lifetime.HasValue)
+        if (lifetime.GetValueOrDefault() <= 0)
         {
             var verificationCode = await _connectionManager
                 .ExecuteAsync(
@@ -51,7 +54,11 @@ public class TryGenerateVerificationCodeCommandHandler : ITryGenerateVerificatio
                             .QuerySingleAsync<string>(
                                 new CommandDefinition(
                                     "[user].[GenerateVerificationCode]",
-                                    request,
+                                    new
+                                    {
+                                        UserId = request.UserId,
+                                        UserAttributeSectionId = userAttributeSection
+                                    },
                                     transaction: _connectionManager.Transaction,
                                     commandType: System.Data.CommandType.StoredProcedure,
                                     cancellationToken: cancellationToken

@@ -36,6 +36,7 @@ public class NextOutboxMessageCommandHandler : INextOutboxMessageCommandHandler
 
                     return outboxMessage;
                 },
+                runTransaction: true,
                 cancellationToken: cancellationToken
             );
 

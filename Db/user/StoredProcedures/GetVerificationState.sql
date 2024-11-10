@@ -16,8 +16,8 @@ BEGIN
 	SELECT
 		[VerificationState] = CASE
 			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_Password THEN @VerificationStateTypeId_Password
-			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_AlternativeEmail THEN @VerificationStateTypeId_Email
-			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_Email THEN @VerificationStateTypeId_AlternativeEmail
+			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_AlternativeEmail THEN @VerificationStateTypeId_AlternativeEmail
+			WHEN ua_.UserAttributeSectionId = @UserAttributeSectionId_Email THEN @VerificationStateTypeId_Email
 		END
 	FROM
 		[user].UserAttributes ua_

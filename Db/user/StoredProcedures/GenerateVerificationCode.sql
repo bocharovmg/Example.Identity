@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [user].[GenerateVerificationCode]
 	@UserId UNIQUEIDENTIFIER
-	, @VerificationField INT
+	, @UserAttributeSectionId INT
 AS
 BEGIN
 	DECLARE
@@ -27,7 +27,7 @@ BEGIN
 		[user].UserAttributes ua_
 	WHERE
 		ua_.UserId = @UserId
-		AND ua_.UserAttributeSectionId = @VerificationField
+		AND ua_.UserAttributeSectionId = @UserAttributeSectionId
 
 
 	SELECT

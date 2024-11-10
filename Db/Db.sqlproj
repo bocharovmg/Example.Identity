@@ -85,7 +85,6 @@
     <Build Include="user\StoredProcedures\GenerateVerificationCode.sql" />
     <Build Include="user\StoredProcedures\GetUser.sql" />
     <Build Include="user\StoredProcedures\GetUserIdByLogin.sql" />
-    <Build Include="user\StoredProcedures\GetUserIdByVerificationCode.sql" />
     <Build Include="user\StoredProcedures\GetVerificationState.sql" />
     <Build Include="user\StoredProcedures\OpanAccess.sql" />
     <Build Include="user\StoredProcedures\SetupPassword.sql" />

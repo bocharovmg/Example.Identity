@@ -3,10 +3,10 @@
 
 namespace Domain.Contracts.Commands;
 
-public class SetupPasswordCommand(
+public class ConfirmEmailCommand(
     string email,
     string verificationCode,
-    string password
+    bool isAlternativeEmail
 ) :
     IRequest
 {
@@ -14,5 +14,5 @@ public class SetupPasswordCommand(
 
     public string VerificationCode { get; private init; } = verificationCode;
 
-    public string Password { get; private init; } = password;
+    public bool IsAlternativeEmail { get; private init; } = isAlternativeEmail;
 }

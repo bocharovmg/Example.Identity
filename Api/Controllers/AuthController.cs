@@ -6,6 +6,8 @@ using Domain.Contracts.Commands;
 using Domain.Contracts.Dtos;
 using Domain.Contracts.Queries;
 using Api.Contracts.Requests.VerificationCode;
+using Microsoft.AspNetCore.Authorization;
+using Infrastructure.Contracts;
 
 
 namespace Api.Controllers;
@@ -16,17 +18,22 @@ public class AuthController : ControllerBase
 {
     private readonly ILogger<AuthController> _logger;
 
+    private readonly UserContext _userContext;
+
     private readonly IMediator _mediator;
 
     private readonly IMapper _mapper;
 
     public AuthController(
         ILogger<AuthController> logger,
+        UserContext userContext,
         IMediator mediator,
         IMapper mapper
     )
     {
         _logger = logger;
+
+        _userContext = userContext;
 
         _mapper = mapper;
 
@@ -36,6 +43,7 @@ public class AuthController : ControllerBase
     [HttpPost("sign-in")]
     [Produces("application/json")]
     [ProducesResponseType<UserDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SignInRequestAsync([FromBody] SignInRequest request, CancellationToken cancellationToken = default)
     {
         var signInRequest = _mapper.Map<SignInQuery>(request);
@@ -48,6 +56,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("sign-up")]
+    [Produces("application/json")]
+    [ProducesResponseType<UserDto>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SignUpRequestAsync([FromBody] SignUpRequest request, CancellationToken cancellationToken = default)
     {
         var signUpRequest = _mapper.Map<SignUpCommand>(request);
@@ -60,33 +71,47 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("setup-password")]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
     public async Task<IActionResult> SetupPasswordRequestAsync([FromBody] SetupPasswordRequest request, CancellationToken cancellationToken = default)
     {
         var setupPasswordRequest = _mapper.Map<SetupPasswordCommand>(request);
 
-        var setupPasswordResponse = await _mediator.Send(setupPasswordRequest, cancellationToken);
+        await _mediator.Send(setupPasswordRequest, cancellationToken);
 
-        if (setupPasswordResponse)
-        {
-            return Ok();
-        }
-
-        return BadRequest();
+        return Ok();
     }
 
     [HttpPost("confirm-email")]
-    public async Task<IActionResult> SetupPasswordRequestAsync([FromBody] ConfirmVerificationCodeRequest request, CancellationToken cancellationToken = default)
+    [Authorize]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<IActionResult> ConfirmEmailRequestAsync([FromBody] ConfirmVerificationCodeRequest request, CancellationToken cancellationToken = default)
     {
-        var confirmVerificationCodeRequest = _mapper.Map<ConfirmVerificationCodeCommand>(request);
+        var confirmEmailRequest = new ConfirmEmailCommand(_userContext.Email, request.VerificationCode, false);
 
-        var confirmVerificationCodeResponse = await _mediator.Send(confirmVerificationCodeRequest, cancellationToken);
+        await _mediator.Send(confirmEmailRequest, cancellationToken);
 
-        if (confirmVerificationCodeResponse)
-        {
-            return Ok();
-        }
+        return Ok();
+    }
 
-        return BadRequest();
+    [HttpPost("confirm-alternative-email")]
+    [Authorize]
+    [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<IActionResult> ConfirmAlternativeEmailRequestAsync([FromBody] ConfirmVerificationCodeRequest request, CancellationToken cancellationToken = default)
+    {
+        var confirmAlternativeEmailRequest = new ConfirmEmailCommand(_userContext.Email, request.VerificationCode, true);
+
+        await _mediator.Send(confirmAlternativeEmailRequest, cancellationToken);
+
+        return Ok();
     }
 
     private void SetupSecurityToken(UserDto user, SecurityTokenDto securityToken)

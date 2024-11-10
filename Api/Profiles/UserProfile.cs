@@ -26,7 +26,7 @@ namespace Api.Profiles
                 .ConstructUsing(src => new SignUpCommand(src.Name, src.Email, src.AlternativeEmail, src.Password.GetHash(SHA512.Create()) ?? string.Empty));
 
             CreateMap<SetupPasswordRequest, SetupPasswordCommand>()
-                .ConstructUsing(src => new SetupPasswordCommand(src.VerificationCode, src.Password.GetHash(SHA512.Create()) ?? string.Empty));
+                .ConstructUsing(src => new SetupPasswordCommand(src.Email, src.VerificationCode, src.Password.GetHash(SHA512.Create()) ?? string.Empty));
         }
 
         private void CreateQueryMap()

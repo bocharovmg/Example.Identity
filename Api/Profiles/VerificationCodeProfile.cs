@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using Api.Contracts.Requests.VerificationCode;
-using Domain.Contracts.Commands;
-using Domain.Contracts.Queries;
 
 
 namespace Api.Profiles
@@ -14,10 +11,9 @@ namespace Api.Profiles
 
             CreateQueryMap();
         }
+
         private void CreateCommandMaps()
         {
-            CreateMap<ConfirmVerificationCodeRequest, ConfirmVerificationCodeCommand>()
-                .ConstructUsing(src => new ConfirmVerificationCodeCommand(src.VerificationCode));
         }
 
         private void CreateQueryMap()

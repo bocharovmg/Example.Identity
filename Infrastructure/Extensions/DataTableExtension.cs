@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Extensions;
 
-public static class DataTableExtension
+internal static class DataTableExtension
 {
     /// <summary>
     /// Convert list to DataTable

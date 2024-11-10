@@ -25,9 +25,6 @@ public class UserProfile : Profile
     {
         CreateMap<DomainCommands.SignUpCommand, InfrastructureCommands.CreateUserCommand>()
             .ConstructUsing(src => new InfrastructureCommands.CreateUserCommand(src.Name, src.Email, src.AlternativeEmail, src.Password));
-
-        CreateMap<DomainCommands.ConfirmVerificationCodeCommand, InfrastructureCommands.ConfirmVerificationCodeCommand>()
-            .ConstructUsing(src => new InfrastructureCommands.ConfirmVerificationCodeCommand(src.VerificationCode));
     }
 
     private void CreateQueryMaps()

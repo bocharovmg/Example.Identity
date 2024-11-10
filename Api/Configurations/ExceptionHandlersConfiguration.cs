@@ -18,8 +18,16 @@ public static class ExceptionHandlersConfiguration
     public static IServiceCollection RegisterUserExceptionHandlers(this IServiceCollection services)
     {
         services.AddExceptionHandler<InvalidLoginOrPasswordExceptionHandler>();
+
         services.AddExceptionHandler<UserNotExistsExceptionHandler>();
+
         services.AddExceptionHandler<DuplicateUserExceptionHandler>();
+
+        services.AddExceptionHandler<VerificationCodeIsExpiredExceptionHandler>();
+
+        services.AddExceptionHandler<VerificationIsNotStartedExceptionHandler>();
+
+        services.AddExceptionHandler<WrongVerificationCodeExceptionHandler>();
 
         return services;
     }

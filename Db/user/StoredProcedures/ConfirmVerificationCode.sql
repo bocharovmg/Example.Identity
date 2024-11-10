@@ -1,5 +1,7 @@
 ﻿CREATE PROCEDURE [user].[ConfirmVerificationCode]
-	@VerificationCode NVARCHAR(6)
+	@UserId UNIQUEIDENTIFIER
+	, @VerificationCode NVARCHAR(6)
+	, @UserAttributeSectionId INT
 AS
 BEGIN
 	UPDATE ua_
@@ -8,6 +10,8 @@ BEGIN
 	FROM
 		[user].UserAttributes ua_
 	WHERE
-		ua_.VerificationCode = @VerificationCode
+		ua_.UserId = @UserId
+		AND ua_.VerificationCode = @VerificationCode
 		AND @VerificationCode <> ''
+		AND ua_.UserAttributeSectionId = @UserAttributeSectionId
 END

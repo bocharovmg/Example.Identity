@@ -3,6 +3,7 @@ using Abstractions.Infrastructure.ConnectionManager;
 using Infrastructure.Contracts.Commands;
 using Infrastructure.Contracts.Interfaces.QueryHandlers;
 using Dapper;
+using Infrastructure.Extensions;
 
 
 namespace Infrastructure.CommandHandlers;
@@ -18,6 +19,8 @@ public class ConfirmVerificationCodeCommandHandler : IConfirmVerificationCodeCom
 
     public async Task<bool> Handle(ConfirmVerificationCodeCommand request, CancellationToken cancellationToken)
     {
+        var userAttributeSection = request.VerificationField.ToUserAttributeSection();
+
         var result = await _connectionManager
             .ExecuteAsync(
                 async (connection) =>
@@ -26,7 +29,12 @@ public class ConfirmVerificationCodeCommandHandler : IConfirmVerificationCodeCom
                         .ExecuteAsync(
                             new CommandDefinition(
                                 "[user].[ConfirmVerificationCode]",
-                                request,
+                                new
+                                {
+                                    UserId = request.UserId,
+                                    VerificationCode = request.VerificationCode,
+                                    UserAttributeSectionId = userAttributeSection
+                                },
                                 transaction: _connectionManager.Transaction,
                                 commandType: System.Data.CommandType.StoredProcedure,
                                 cancellationToken: cancellationToken
