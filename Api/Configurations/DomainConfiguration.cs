@@ -10,6 +10,8 @@ public static class DomainConfiguration
 {
     public static MediatRServiceConfiguration ConfigureDomainBehaviors(this MediatRServiceConfiguration configuration)
     {
+        configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
+
         configuration.AddOpenBehavior(typeof(TransactionalBehavior<,>));
 
         return configuration;

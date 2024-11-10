@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Domain.Contracts.Interfaces.SeedWork;
+using MediatR;
 
 
 namespace Domain.Contracts.Commands;
@@ -8,7 +9,7 @@ public class ConfirmEmailCommand(
     string verificationCode,
     bool isAlternativeEmail
 ) :
-    IRequest
+    IRequest, ITransactional
 {
     public string Email { get; private init; } = email;
 

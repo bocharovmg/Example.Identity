@@ -8,6 +8,8 @@ public static class ExceptionHandlersConfiguration
 {
     public static IServiceCollection ConfigureExceptionHandlers(this IServiceCollection services)
     {
+        services.AddExceptionHandler<ValidationExceptionHandler>();
+
         services.RegisterUserExceptionHandlers();
 
         services.AddExceptionHandler<UnhandledExceptionHandler>();

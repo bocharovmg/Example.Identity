@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Domain.Configurations;
 using Infrastructure.Configuration;
+using FluentValidation;
 
 
 namespace Api.Configurations;
@@ -39,6 +40,8 @@ public static class ServicesConfiguration
                 },
                 Assembly.GetExecutingAssembly()
             );
+
+        services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
 
         return services;
     }
